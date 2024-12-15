@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 21:26:58 by bkaleta           #+#    #+#             */
-/*   Updated: 2024/12/14 22:47:26 by bkaleta          ###   ########.fr       */
+/*   Updated: 2024/12/15 14:02:50 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,21 @@
 
 #include <iostream>
 #include <string>
+#include <cctype>
+#include <algorithm>
+#include <limits>
 #include "Contact.hpp"
 
 class PhoneBook
 {
 private:
-	Contact	array[8];
+	Contact			array[8];
+	int				pos, index;
 public:
-	PhoneBook(/* args */);
+	PhoneBook();
 	void	Add();
 	void	Search();
 	void	Exit();
-	~PhoneBook();
 };
 
 #endif

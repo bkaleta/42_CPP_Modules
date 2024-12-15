@@ -6,7 +6,7 @@
 #    By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/14 21:28:39 by bkaleta           #+#    #+#              #
-#    Updated: 2024/12/14 21:29:17 by bkaleta          ###   ########.fr        #
+#    Updated: 2024/12/15 13:15:44 by bkaleta          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CXXFLAGS = -std=c++17 -Wall -Wextra -Werror
 TARGET = phonebook
 
 # Pliki źródłowe i obiektowe
-SRC = phonebook.cpp contact.cpp
+SRC = main.cpp phonebook.cpp contact.cpp
 OBJ = $(SRC:.cpp=.o)
 
 # Domyślny cel

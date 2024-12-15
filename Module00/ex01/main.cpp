@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 21:30:06 by bkaleta           #+#    #+#             */
-/*   Updated: 2024/12/14 22:48:20 by bkaleta          ###   ########.fr       */
+/*   Updated: 2024/12/15 14:53:35 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,35 @@
 
 int	main(void)
 {
-	PhoneBook		phonebook;
-	std::string		input, command;
-	int				i = -1;
+	PhoneBook				phonebook;
+	std::string				input;
 	
-	std::cout << "Welcome to the PhoneBook! Enter a command: 1.ADD, 2.SEARCH, 3.EXIT" << std::endl; 
-	while (1)
+	std::cout << "Welcome to the PhoneBook! Enter a input: 1.ADD, 2.SEARCH, 3.EXIT" << std::endl; 
+while (1)
 	{
 		std::cin >> input;
-		while (input[++i])
-			command = toupper(input[i]);
-		if (command == "ADD" || command == "1")
-			phonebook.Add();
-		else if (command == "SEARCH" || command == "2")
-			phonebook.Search();
-		else if (command == "EXIT" || command == "3")
+		
+		if (input == "ADD" || input == "1")
 		{
-			phonebook.Exit(); 
+			phonebook.Add();
+			std::cout << std::endl << "Type one of the three following command" << std::endl;
+			std::cout << "1. ADD | 2. SEARCH | 3. EXIT : ";	
+		}
+		else if (input == "SEARCH" || input == "2")
+		{
+			phonebook.Search();
+			std::cout << std::endl << "Type one of the three following command" << std::endl;
+			std::cout << "1. ADD | 2. SEARCH | 3. EXIT : ";		
+		}
+		else if (input == "EXIT" || input == "3")
+		{
+			phonebook.Exit();
 			return (0);
 		}
 		else
-			std::cout << "Wrong input, Enter a command: 1.ADD, 2.SEARCH, 3.EXIT" << std::endl;
+		{
+			std::cout << std::endl << "Wrong input, try ADD, SEARCH or EXIT" << ": ";
+		}
 	}
 	return (0);
 }

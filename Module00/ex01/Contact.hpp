@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 21:30:03 by bkaleta           #+#    #+#             */
-/*   Updated: 2024/12/14 22:29:30 by bkaleta          ###   ########.fr       */
+/*   Updated: 2024/12/15 13:22:33 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ private:
 	std::string	phone;
 	std::string	secret;
 public:
-	Contact(/* args */);
-	void	SetData();
+	Contact();
+	void	SetData(std::string fn, std::string ln, std::string nn, std::string p, std::string s);
 	void	GetData();
-	~Contact();
 };
 
 #endif
