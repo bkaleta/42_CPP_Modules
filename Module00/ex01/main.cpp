@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 21:30:06 by bkaleta           #+#    #+#             */
-/*   Updated: 2024/12/15 14:53:35 by bkaleta          ###   ########.fr       */
+/*   Updated: 2024/12/16 00:06:59 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ while (1)
 			std::cout << "1. ADD | 2. SEARCH | 3. EXIT : ";		
 		}
 		else if (input == "EXIT" || input == "3")
-		{
-			phonebook.Exit();
-			return (0);
-		}
+			break ;
 		else
 		{
 			std::cout << std::endl << "Wrong input, try ADD, SEARCH or EXIT" << ": ";

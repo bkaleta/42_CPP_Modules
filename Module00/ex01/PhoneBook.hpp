@@ -6,30 +6,38 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 21:26:58 by bkaleta           #+#    #+#             */
-/*   Updated: 2024/12/15 14:02:50 by bkaleta          ###   ########.fr       */
+/*   Updated: 2024/12/16 17:18:16 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#define PHONEBOOK_HPP
 
 #include <iostream>
+#include <cstdlib>
 #include <string>
-#include <cctype>
-#include <algorithm>
+#include <unistd.h>
+#include <iomanip>
+#include <sstream>
 #include <limits>
 #include "Contact.hpp"
 
-class PhoneBook
+class PhoneBook 
 {
-private:
-	Contact			array[8];
-	int				pos, index;
-public:
-	PhoneBook();
-	void	Add();
-	void	Search();
-	void	Exit();
+	// Atrybuty 
+	private:
+		Contact	array_of_contacts[8];
+		int		index;
+		int		size;
+
+		std::string truncate(const std::string &text, size_t width) const;
+	public:
+		//Konstruktor
+		PhoneBook();
+		// Metody
+		void	add();
+		void	search() const;
+		void	exit();
 };
 
-#endif
+#endif 
