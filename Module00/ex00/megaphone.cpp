@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 21:07:17 by bkaleta           #+#    #+#             */
-/*   Updated: 2024/12/14 21:19:43 by bkaleta          ###   ########.fr       */
+/*   Updated: 2024/12/16 20:55:05 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int ac, char **av)
 				std::cout << (char)toupper(av[i][j]);
 				j++;
 			}
+			std::cout << " ";
 			i++;
 		}
 		std::cout << std::endl;

@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 21:30:06 by bkaleta           #+#    #+#             */
-/*   Updated: 2024/12/16 00:06:59 by bkaleta          ###   ########.fr       */
+/*   Updated: 2024/12/16 18:45:44 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ while (1)
 		
 		if (input == "ADD" || input == "1")
 		{
-			phonebook.Add();
+			phonebook.add();
 			std::cout << std::endl << "Type one of the three following command" << std::endl;
 			std::cout << "1. ADD | 2. SEARCH | 3. EXIT : ";	
 		}
 		else if (input == "SEARCH" || input == "2")
 		{
-			phonebook.Search();
+			phonebook.search();
 			std::cout << std::endl << "Type one of the three following command" << std::endl;
 			std::cout << "1. ADD | 2. SEARCH | 3. EXIT : ";		
 		}
