@@ -6,13 +6,13 @@
 #    By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/14 21:09:36 by bkaleta           #+#    #+#              #
-#    Updated: 2024/12/14 21:09:38 by bkaleta          ###   ########.fr        #
+#    Updated: 2024/12/19 14:08:07 by bkaleta          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Kompilator i flagi
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -Werror
+CXXFLAGS = -std=c++17 -Wall -Wextra -Werror 
 
 # Nazwa pliku wykonywalnego
 TARGET = megaphone
