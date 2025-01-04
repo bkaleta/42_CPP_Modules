@@ -1,6 +1,6 @@
 # Kompilator i flagi
-CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -Werror
+CXX = c++
+CXXFLAGS = -std=c++17 -std=c++98 -Wall -Wextra -Werror
 
 # Nazwa pliku wykonywalnego
 TARGET = brainz

@@ -1,5 +1,5 @@
 # Kompilator i flagi
-CXX = g++
+CXX = c++
 CXXFLAGS = -std=c++17 -Wall -Wextra -Werror
 
 # Nazwa pliku wykonywalnego

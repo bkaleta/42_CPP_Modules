@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+         #
+#    By: bkaleta <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/14 21:09:36 by bkaleta           #+#    #+#              #
-#    Updated: 2024/12/19 14:08:07 by bkaleta          ###   ########.fr        #
+#    Updated: 2025/01/04 12:54:26 by bkaleta          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Kompilator i flagi
-CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -Werror 
+CXX = c++
+CXXFLAGS = -std=c++17 -std=c++98 -Wall -Wextra -Werror 
 
 # Nazwa pliku wykonywalnego
 TARGET = megaphone

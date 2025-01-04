@@ -1,12 +1,12 @@
 # Kompilator i flagi
 CXX = c++
-CXXFLAGS = -std=c++17 -Wall -Wextra -Werror
+CXXFLAGS = -std=c++17 -std=c++98 -Wall -Wextra -Werror
 
 # Nazwa pliku wykonywalnego
-TARGET = Unnecessary_violence
+TARGET = Harl
 
 # Pliki źródłowe i obiektowe
-SRC = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
+SRC = main.cpp Harl.cpp
 OBJ = $(SRC:.cpp=.o)
 
 # Domyślny cel
