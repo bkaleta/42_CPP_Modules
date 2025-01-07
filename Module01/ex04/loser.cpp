@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   loser.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/08 00:34:14 by bkaleta           #+#    #+#             */
+/*   Updated: 2025/01/08 00:34:15 by bkaleta          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "loser.hpp"
 
 void replaceAndWrite(const std::string &original_file, const std::string &copied_file, const std::string &s1, const std::string &s2)
