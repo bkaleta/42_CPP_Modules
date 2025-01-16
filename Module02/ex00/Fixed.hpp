@@ -6,7 +6,15 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:33:11 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/01/08 00:33:12 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/01/16 21:22:23 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FIXED_HPP
+# define FIXED_HPP
+
+#include <iostream>
+
+
+
+#endif
