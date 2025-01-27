@@ -6,11 +6,19 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 14:46:19 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/01/27 19:25:03 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/01/27 19:34:33 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+
+ClapTrap::ClapTrap(void)
+{
+	name = "";
+	hit_points = 0;
+	energy_points = 0;
+	attack_damage = 0;
+}
 
 ClapTrap::ClapTrap(std::string name)
 {
