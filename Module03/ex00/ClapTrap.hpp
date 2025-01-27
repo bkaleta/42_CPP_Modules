@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 14:46:22 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/01/26 21:25:15 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/01/27 19:21:44 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ private:
 	int			attack_damage;
 public:
 	ClapTrap(std::string name);
+	ClapTrap(const ClapTrap &other);
+	ClapTrap &operator = (const ClapTrap &other);
 	~ClapTrap();
 	void	attack(const std::string &target);
 	void	takeDamage(unsigned int amount);
