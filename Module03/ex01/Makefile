@@ -1,6 +1,6 @@
 SRC = *.cpp
 
-NAME = ClapTrap
+NAME = ClapTrap2
 
 CC = c++ -Wall -Wextra -Werror -std=c++98
 

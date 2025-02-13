@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:59:09 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/02/13 22:12:08 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/02/13 23:27:26 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ClapTrap.hpp"
 
 ScavTrap::ScavTrap(void) 
-	: ClapTrap("ScavTrap")
+	: ClapTrap("Default ScavTrap")
 {
 	this->hit_points = 100;
 	this->energy_points = 50;
