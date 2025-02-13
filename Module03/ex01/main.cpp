@@ -6,26 +6,35 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 14:46:24 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/01/27 19:35:32 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/02/13 22:07:29 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
-int	main(void)
+int main()
 {
-	ClapTrap first("FIRST");
-	ClapTrap second("SECOND");
-	ClapTrap c("nazwa");
-	
-	first.attack("SECOND");
-	second.takeDamage(5);
-	second.beRepaired(2);
-	second.attack("FIRST");
-	first.takeDamage(10);
-	c = first;
-	c.attack("SECOND");
-	first.attack("SECOND");
+    ClapTrap trap("Trap");
+    ClapTrap claptrap("ClapTrap");
+    ClapTrap klon("klon");
+    ClapTrap defaultTrap;
+    
+    trap.attack("ClapTrap");
+    claptrap.takeDamage(5);
+    claptrap.beRepaired(2);
+    claptrap.attack("Trap");
+    trap.takeDamage(10);
+    klon = trap;
+    klon.attack("ClapTrap");
+    klon.beRepaired(2);
+    
+    std::cout << "__________________________________" << std::endl;
+    
+    ScavTrap defaultScavTrap;
+    ScavTrap properScavTrap("Proper");
+    defaultScavTrap.attack("Proper");
+    properScavTrap.guardGate();
 
-	return (0);
+    return 0;
 }
