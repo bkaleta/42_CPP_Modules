@@ -1,6 +1,6 @@
 SRC = *.cpp
 
-NAME = FragTrap
+NAME = Animals2
 
 CC = c++ -Wall -Wextra -Werror -std=c++98
 
