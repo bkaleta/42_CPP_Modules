@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 19:52:19 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/03/08 20:05:30 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/03/08 21:20:40 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ protected:
 	std::string	type;
 public:
 	Animal(); // def constructor
-	Animal(std::string type); // constructor
+	Animal(std::string animalType); // constructor
 	Animal(const Animal &other); // copy constructor;
 	Animal &operator=(const Animal &other); // Assignement 
-	~Animal();
+	virtual	~Animal();
 	
 	std::string getType() const;
-	void	makeSound() const;
+	virtual	void	makeSound() const;
 };
 
 #endif
