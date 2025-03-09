@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 19:53:19 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/03/08 21:04:01 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/03/09 19:30:34 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,21 @@
 
  // Default constructor
 Animal::Animal() 
-	: type("some default animal") {std::cout << "Animal default constructor called" << std::endl;}
+	: type("some default animal") 
+{
+	std::cout << "Animal default constructor called" << std::endl;
+}
 // Constructor
 Animal::Animal(std::string animalType)
-	: type(animalType) {std::cout << "Animal " << type << " constructor called" << std::endl;} 
+	: type(animalType) 
+{
+	std::cout << "Animal " << type << " constructor called" << std::endl;
+} 
 // copy constructor;
-Animal::Animal(const Animal &other) {*this = other;}
+Animal::Animal(const Animal &other) 
+{
+	*this = other;
+}
 // Assignement 
 Animal	&Animal::operator=(const Animal &other)
 {
@@ -27,8 +36,17 @@ Animal	&Animal::operator=(const Animal &other)
 	return (*this);
 }
 // Destructor
-Animal::~Animal() {std::cout << "Animal destructor called" << std::endl;}
+Animal::~Animal() 
+{
+	std::cout << "Animal destructor called" << std::endl;
+}
 // Get type
-std::string	Animal::getType() const {return (type);}
+std::string	Animal::getType() const 
+{
+	return (type);
+}
 
-void	Animal::makeSound() const {std::cout << "Animal sound" << std::endl;}
+void	Animal::makeSound() const 
+{
+	std::cout << "Animal sound" << std::endl;
+}

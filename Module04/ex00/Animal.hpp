@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 19:52:19 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/03/08 21:20:40 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/03/09 19:32:36 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ public:
 	virtual	~Animal();
 	
 	std::string getType() const;
+	void	setType(const std::string &t);
 	virtual	void	makeSound() const;
 };
 

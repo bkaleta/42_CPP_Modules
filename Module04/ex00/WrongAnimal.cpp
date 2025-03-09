@@ -6,17 +6,23 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 20:01:55 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/03/08 21:54:35 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/03/09 19:26:50 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongAnimal.hpp"
 
 WrongAnimal::WrongAnimal()
-	: type("WrongAnimal") {std::cout << "WrongAnimal default constructor called" << std::endl;}
+	: type("WrongAnimal") 
+{
+	std::cout << "WrongAnimal default constructor called" << std::endl;
+}
 
 WrongAnimal::WrongAnimal(std::string animalType)
-	: type(animalType) {std::cout << "Wrong Animal " << type << " constructor called" << std::endl;}
+	: type(animalType) 
+{
+	std::cout << "Wrong Animal " << type << " constructor called" << std::endl;
+}
 
 WrongAnimal::WrongAnimal(const WrongAnimal &other)
 {
