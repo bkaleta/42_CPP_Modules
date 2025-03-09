@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 19:53:19 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/03/09 19:30:34 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/03/09 19:46:26 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,4 @@ std::string	Animal::getType() const
 
 void	Animal::makeSound() const 
 {
-	std::cout << "Animal sound" << std::endl;
 }
