@@ -1,6 +1,6 @@
 SRC = *.cpp
 
-NAME = Animals1
+NAME = Animals
 
 CC = c++ -Wall -Wextra -Werror -std=c++98
 
