@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:24:28 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/03/25 22:28:01 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/03/25 22:29:26 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include "WrongCat.hpp"
+#include "Brain.hpp"
 
 int	main()
 {
