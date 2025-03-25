@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:24:28 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/03/09 19:29:28 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/03/25 22:28:01 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,23 @@
 
 int	main()
 {
-	std::cout << "CONSTRUCTORS \n\n";
-	const	Animal		*meta = new Animal();
-	const	Animal		*j = new Dog();
-	const	Animal		*i = new Cat();
-	const	WrongAnimal	*wrong = new WrongCat();
+	Animal	*array[100];
+	int		i = 0;
 
-	std::cout << "\nTYPES \n\n";
-	std::cout << "\n" << meta->getType() << " " << std::endl;
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	std::cout << wrong->getType() << " " << std::endl;
-	
-	std::cout << "\nSOUNDS \n\n";
-	meta->makeSound();
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	wrong->makeSound();
-	
-	std::cout << "\nDESTRUCTORS \n\n";
-	delete meta;
-	delete i;
-	delete j;
-	delete wrong;
-	
-	return 0;
+	while (i < 50)
+		array[i++] = new Dog();
+	while (i < 100)
+		array[i++] = new Cat();
+	std::cout << "\n\n\n Array created\n";
+	array[42]->makeSound();
+	array[96]->makeSound();
+
+	std::cout << "\n\n\n Sounds done";
+	i = 0;
+	while (i < 100)
+	{
+        delete array[i];
+		i++;		
+	}
+	return (0);
 }
