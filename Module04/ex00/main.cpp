@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:24:28 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/03/09 19:29:28 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/04/12 00:46:55 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,39 @@ int	main()
 	j->makeSound();
 	wrong->makeSound();
 	
+	std::cout << "\nOTHER APPROACH TO POLIMORPH on stack\n";
+	Dog	dog;
+	Cat cat;
+
+	Animal	*ptr;
+	ptr = &dog;
+	std::cout << "Lets see if ptr point to proper object!\n";
+	std::cout << "Type: " << ptr->getType() << std::endl;
+	ptr->makeSound();
+
+	ptr = &cat;
+	std::cout << "Lets see if ptr point to proper object!\n";
+	std::cout << "Type: " << ptr->getType() << std::endl;
+	ptr->makeSound();
+
+	std::cout << "\nOTHER APPROACH TO POLIMORPH on HEAP\n";
+	Dog		*doggy = new Dog();
+	Cat		*catty = new Cat();
+	Animal	*aPTR;
+
+	aPTR = doggy;
+	aPTR->makeSound();
+	aPTR = catty;
+	aPTR->makeSound();
+	
+	
 	std::cout << "\nDESTRUCTORS \n\n";
 	delete meta;
 	delete i;
 	delete j;
 	delete wrong;
+	delete doggy;
+	delete catty;
 	
 	return 0;
 }
