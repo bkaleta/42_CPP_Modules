@@ -22,7 +22,7 @@ FragTrap::FragTrap()
 }
 
 FragTrap::FragTrap(std::string name)
-	:	ClapTrap("FragTrap")
+	:	ClapTrap(name)
 {
 	this->hit_points = 100;
 	this->energy_points = 100;
