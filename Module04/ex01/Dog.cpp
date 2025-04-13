@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 20:01:33 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/03/25 22:25:35 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/04/13 21:55:15 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,20 @@ Dog::Dog()
 
 Dog::Dog(const Dog &other) : Animal(other)
 {
-	*this = other;
+	type = other.type;
+	brain = new Brain(*other.brain);
+	std::cout << "Dog copy constructor called" << std::endl;
 }
 
 Dog	&Dog::operator=(const Dog &other)
 {
-	type = other.getType();
-	*brain = *other.brain;
-	std::cout << "Dog assigment operator called" << std::endl;
+	if (this != &other)
+	{
+		delete brain;
+		brain = new Brain(*other.brain);
+		type = other.type;
+		std::cout << "Dog assignment operator called" << std::endl;
+	}
 	return (*this);
 }
 
@@ -41,4 +47,19 @@ Dog::~Dog()
 void	Dog::makeSound() const
 {
 	std::cout << "WOOF" << std::endl;
+}
+
+void Dog::setBrainIdea(int index, const std::string& idea) 
+{
+    brain->setIdea(index, idea);
+}
+
+std::string Dog::getBrainIdea(int index) const 
+{
+    return (brain->getIdea(index));
+}
+
+Brain *Dog::getBrainAddress() const 
+{
+    return brain;
 }
