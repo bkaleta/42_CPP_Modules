@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:19 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/05/20 20:17:43 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/05/20 20:55:57 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ void Bureaucrat::incrementGrade()
 	_grade--;
 	std::cout << "After increse: " << this->getGrade() << std::endl;
 	if (_grade < 1)
+	{
+		_grade++;
 		throw GradeTooHighException();
+	}
 }
 
 void Bureaucrat::decrementGrade()
@@ -62,7 +65,10 @@ void Bureaucrat::decrementGrade()
 	_grade++;
 	std::cout << "Decrese increse: " << this->getGrade() << std::endl;
 	if (_grade > 150)
+	{
+		_grade--;
 		throw GradeTooLowException();
+	}
 }
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &b)

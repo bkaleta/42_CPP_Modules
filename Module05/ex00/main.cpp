@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:12 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/05/20 20:48:57 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/05/20 20:53:32 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(void)
 		std::cerr << e.what() << '\n';
 	}
 	
+	std::cout << b0 << std::endl << b1 << std::endl;
 	std::cout << "Done!" << std::endl;
 	
 	return (0);
