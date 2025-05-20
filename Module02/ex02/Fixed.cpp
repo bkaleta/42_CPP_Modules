@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 01:33:34 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/01/26 04:22:36 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/05/20 19:40:07 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ Fixed& Fixed::operator=(const Fixed &other)
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
 {
-    out << fixed.toFloat();
+    out << fixed.toFloat() << " Float odjebany " << fixed.getRawBits();
     return (out);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:16 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/05/20 19:01:34 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/05/20 20:37:06 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,33 @@ protected:
 	const std::string 	_name;
 	int					_grade;
 public:
-	Bureaucrat(std::string name, int grade);
+	Bureaucrat();
+	Bureaucrat(const std::string &name, int grade);
+	Bureaucrat(const Bureaucrat &other);
+	Bureaucrat &operator=(const Bureaucrat &other);
 	~Bureaucrat();
 
-	bool GradeTooHighException();
-	bool GradeTooLowException();
-	void getName();
-	void getGrade();
+	std::string getName() const;
+	int getGrade() const;
+
 	void incrementGrade();
 	void decrementGrade();
+
+	class GradeTooHighException : public std::exception {
+    public:
+        virtual const char *what() const throw() {
+            return ("Grade too high!");
+        }
+    };
+
+    class GradeTooLowException : public std::exception {
+    public:
+        virtual const char *what() const throw() {
+            return ("Grade too low!");
+        }
+    };
 };
+
+std::ostream &operator<<(std::ostream &out, const Bureaucrat &b);
 
 #endif 
