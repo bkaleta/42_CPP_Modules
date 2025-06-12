@@ -3,53 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
+/*   By: bkaleta <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:12 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/05/20 20:53:32 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/12 18:39:27 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
-int	main(void)
+int main()
 {
-	Bureaucrat b0("TooHigh", 13);
-	Bureaucrat b1("TooLow", 149);
-	int i = 0;
-	
-	try
-	{
-		std::cout << b0 << std::endl;
-		while (i < 15)
-		{
-			b0.incrementGrade();
-			i++;
-		}
-	}
-	catch(Bureaucrat::GradeTooLowException &e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	catch(Bureaucrat::GradeTooHighException &e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
+    try
+    {
+        Form form("Form1", 50, 75);
+        Bureaucrat bureaucrat("John", 45);
+        bureaucrat.signForm(form);
+    }
+    catch (const std::exception &e)
+    {
+        std::cout << e.what() << std::endl << std::endl;
+    }
+    
+    std::cout << "XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD\n";
 
-	try
-	{
-		std::cout << b1 << std::endl;
-
-		b1.decrementGrade();
-		b1.decrementGrade();
-	}
-	catch(Bureaucrat::GradeTooLowException &e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	
-	std::cout << b0 << std::endl << b1 << std::endl;
-	std::cout << "Done!" << std::endl;
-	
-	return (0);
+    Form form("form1", -1, 5);
+    Bureaucrat michal("Michal", 42);
+    
+    try
+    {
+        michal.signForm(form);
+    }
+    catch (const std::exception &e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+    return 0;
 }

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
+/*   By: bkaleta <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:19 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/08 00:16:46 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/12 18:21:06 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat() : _name("Default Bureaucrat"), _grade(10)
 {
@@ -75,4 +76,19 @@ std::ostream &operator<<(std::ostream &out, const Bureaucrat &b)
 {
 	out << b.getName() << ", bureaucrat grade " << b.getGrade() << std::endl;
 	return (out);
+}
+
+void Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << _name << " signed " << form.getName() << std::endl;
+	}
+	catch(Form::GradeTooLowException& e)
+	{
+		std::cout << _name << " couldn't sign " << form.getName() 
+                  << " because " << e.what() << std::endl;
+	}
+	
 }

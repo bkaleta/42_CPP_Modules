@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
+/*   By: bkaleta <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 00:16:29 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/08 00:49:53 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/12 18:30:27 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_HPP
-# define FORMHPP
+# define FORM_HPP
 
 # include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {
@@ -24,16 +26,17 @@ private:
 	const int			_formGradeToExec;
 public:
 	Form();
-	Form(const std::string &formName, bool formSinged, const int formGradeToSign, const int formGradeToExec);
+	Form(const std::string &formName, const int formGradeToSign, const int formGradeToExec);
 	Form(const Form &other);
 	Form &operator=(const Form &other);
 	~Form();
 
-	std::string getName() const;
-	bool getFormSinged() const;
-	int getGradeToSign() const;
-	int getGradeToExec() const;
+	const std::string &getName() const;
+	bool isSigned() const;
+	int getGradeRequiredToSign() const;
+	int getGradeRequiredToExec() const;
 	
+	void beSigned(const Bureaucrat &bureaucrat);
 
 	class GradeTooHighException : public std::exception {
     public:
