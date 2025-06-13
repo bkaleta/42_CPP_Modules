@@ -1,6 +1,6 @@
 SRC = *.cpp
 
-NAME = Form
+NAME = AForm
 
 CC = c++ -Wall -Wextra -Werror -std=c++98
 

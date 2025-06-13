@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 00:16:37 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/13 13:08:50 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/13 19:02:49 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ AForm &AForm::operator=(const AForm &other)
 }
 
 AForm::~AForm()
-{
-	std::cout << "Form " << getName() << " Destroyed" << std::endl;
-}
+{}
 
 const std::string &AForm::getName() const
 {
@@ -66,9 +64,21 @@ void AForm::beSigned(const Bureaucrat &bureaucrat)
 	}
 	else
 	{
-		//std::cout << bureaucrat.getName() << " couldn't sign " << _formName << " because ";
 		throw GradeTooLowException();
 	}
+}
+
+void AForm::execute(Bureaucrat const &executor) const
+{
+	if(!_formSigned)
+	{
+		throw FormNotSignedException();
+	}
+	if (executor.getGrade() > _formGradeToExec)
+	{
+		throw InsufficientGradeException();
+	}
+	this->execute();
 }
 
 std::ostream &operator<<(std::ostream &out, const AForm &aform)

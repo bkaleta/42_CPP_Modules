@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:16 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/13 12:52:19 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/13 18:44:24 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ public:
 	void incrementGrade();
 	void decrementGrade();
 	void signForm(AForm &aform);
+	void executeForm(AForm const &form) const;
 	
 
 	class GradeTooHighException : public std::exception {
