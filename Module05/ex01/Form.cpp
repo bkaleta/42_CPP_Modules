@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaleta <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 00:16:37 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/12 18:40:48 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/13 13:07:40 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,20 @@ void Form::beSigned(const Bureaucrat &bureaucrat)
 	}
 	else
 	{
-		//std::cout << bureaucrat.getName() << " couldn't sign " << _formName << " because ";
 		throw GradeTooLowException();
 	}
 }
 
 std::ostream &operator<<(std::ostream &out, const Form &form)
 {
+	std::string signedStatus;
+	if (form.isSigned())
+		signedStatus = "Yes";
+	else
+		signedStatus = "No";
+	
     out << "Form: " << form.getName() 
-        << ", Signed: " << (form.isSigned() ? "Yes" : "No")
+        << ", Signed: " << signedStatus
         << ", Grade Required to Sign: " << form.getGradeRequiredToSign()
         << ", Grade Required to Execute: " << form.getGradeRequiredToExec();
     return out;

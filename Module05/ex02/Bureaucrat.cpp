@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaleta <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:19 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/12 19:17:56 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/13 12:53:20 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ std::ostream &operator<<(std::ostream &out, const Bureaucrat &b)
 	return (out);
 }
 
-void Bureaucrat::signForm(Form &aform)
+void Bureaucrat::signForm(AForm &aform)
 {
 	try
 	{

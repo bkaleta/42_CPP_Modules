@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaleta <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 00:16:37 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/12 19:10:21 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/13 13:08:50 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,15 @@ void AForm::beSigned(const Bureaucrat &bureaucrat)
 
 std::ostream &operator<<(std::ostream &out, const AForm &aform)
 {
+	std::string signedStatus;
+	
+	if (aform.isSigned())
+		signedStatus = "Yes";
+	else
+		signedStatus = "No";
+		
     out << "AForm: " << aform.getName() 
-        << ", Signed: " << (aform.isSigned() ? "Yes" : "No")
+        << ", Signed: " << signedStatus
         << ", Grade Required to Sign: " << aform.getGradeRequiredToSign()
         << ", Grade Required to Execute: " << aform.getGradeRequiredToExec();
     return out;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaleta <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:12 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/12 18:39:27 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/13 12:55:31 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main()
 {
     try
     {
-        Form form("Form1", 50, 75);
+        AForm form("Form1", 50, 75);
         Bureaucrat bureaucrat("John", 45);
         bureaucrat.signForm(form);
     }
@@ -28,7 +28,7 @@ int main()
     
     std::cout << "XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD\n";
 
-    Form form("form1", -1, 5);
+    AForm form("form1", -1, 5);
     Bureaucrat michal("Michal", 42);
     
     try
