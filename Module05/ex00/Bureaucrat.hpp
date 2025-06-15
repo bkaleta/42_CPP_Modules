@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:16 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/05/20 20:37:06 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/15 21:17:57 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,16 @@ public:
 	void incrementGrade();
 	void decrementGrade();
 
-	class GradeTooHighException : public std::exception {
-    public:
-        virtual const char *what() const throw() {
-            return ("Grade too high!");
-        }
+	class GradeTooHighException : public std::exception 
+	{
+    	public:
+        	virtual const char *what() const throw();
     };
 
-    class GradeTooLowException : public std::exception {
-    public:
-        virtual const char *what() const throw() {
-            return ("Grade too low!");
-        }
+    class GradeTooLowException : public std::exception
+	{
+    	public:
+        	virtual const char *what() const throw();
     };
 };
 

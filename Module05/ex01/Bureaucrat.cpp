@@ -6,16 +6,14 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:19 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/13 12:52:49 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/15 22:43:17 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-Bureaucrat::Bureaucrat() : _name("Default Bureaucrat"), _grade(10)
-{
-}
+Bureaucrat::Bureaucrat() : _name("Default Bureaucrat"), _grade(142) {}
 
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade(grade) 
 {
@@ -25,9 +23,7 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade
 		throw GradeTooLowException();
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(other._grade) 
-{
-}
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(other._grade) {}
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat& other) 
 {
@@ -85,10 +81,21 @@ void Bureaucrat::signForm(Form &form)
 		form.beSigned(*this);
 		std::cout << _name << " signed " << form.getName() << std::endl;
 	}
-	catch(Form::GradeTooLowException& e)
+	catch(Bureaucrat::GradeTooLowException& e)
 	{
 		std::cout << _name << " couldn't sign " << form.getName() 
                   << " because " << e.what() << std::endl;
 	}
 	
 }
+
+char const *Bureaucrat::GradeTooHighException::what(void) const throw()
+{
+	return ("Grade is too high!");
+}
+
+char const *Bureaucrat::GradeTooLowException::what(void) const throw()
+{
+	return ("Grade is too low!");
+}
+

@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:12 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/13 12:52:56 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/15 22:47:55 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,17 @@ int main()
     
     std::cout << "XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD\n";
 
-    Form form("form1", -1, 5);
-    Bureaucrat michal("Michal", 42);
     
     try
     {
+        Form form("form1", -1, 5);
+        Bureaucrat michal("Michal", 0);
         michal.signForm(form);
     }
     catch (const std::exception &e)
     {
         std::cout << e.what() << std::endl;
     }
+    std::cout << "check" << std::endl;
     return 0;
 }

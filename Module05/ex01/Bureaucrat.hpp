@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:16 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/13 12:52:31 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/15 22:12:23 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,16 @@ public:
 	void signForm(Form &form);
 	
 
-	class GradeTooHighException : public std::exception {
-    public:
-        virtual const char *what() const throw() {
-            return ("Grade too high!");
-        }
+	class GradeTooHighException : public std::exception 
+	{
+		public:
+			virtual const char *what() const throw();
     };
 
-    class GradeTooLowException : public std::exception {
-    public:
-        virtual const char *what() const throw() {
-            return ("Grade too low!");
-        }
+    class GradeTooLowException : public std::exception 
+	{
+		public:
+			virtual const char *what() const throw();
     };
 };
 

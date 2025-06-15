@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 23:19:21 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/14 00:27:12 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/15 20:27:09 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ public:
 	~Intern();
 
 	AForm *makeForm(const std::string &formName, const std::string &target);
+
+private:
+	AForm *createShrubberyForm(const std::string &target);
+	AForm *createRobotomyForm(const std::string &target);
+	AForm *createPresidentialForm(const std::string &target);
 };
 
 

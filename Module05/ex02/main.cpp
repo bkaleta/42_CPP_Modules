@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:12 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/13 19:11:55 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/15 23:54:25 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int main()
     }
     std::cout << std::endl<< "********************POLIMORPH********************" << std::endl;
 
-    Bureaucrat b1("Michal", 150);
+    Bureaucrat b1("Michal", 1);
 
     AForm* forms[3];
     
