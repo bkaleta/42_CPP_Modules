@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 00:16:29 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/15 23:13:43 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/16 12:15:40 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ public:
 	int getGradeRequiredToExec() const;
 	
 	void beSigned(const Bureaucrat &bureaucrat);
-	virtual void execute() const = 0;
-
 	void execute(Bureaucrat const &executor) const;
+
+	virtual void execAction(Bureaucrat const &executor) const = 0;
 
 	class GradeTooHighException : public std::exception 
     {

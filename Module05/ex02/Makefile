@@ -8,6 +8,8 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -f
 
+SHRUBBERY = rm -f *_shrubbery
+
 NAME = AForm
 
 
@@ -17,7 +19,7 @@ $(NAME): $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ) $(SHRUBBERY)
 
 fclean: clean
 	$(RM) $(NAME)

@@ -6,11 +6,12 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 00:16:37 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/15 23:21:01 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/16 12:14:13 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
+#include "Bureaucrat.hpp"
 
 AForm::AForm() : _formName("Default"), _formSigned(false), _formGradeToSign(10), _formGradeToExec(10) {}
 
@@ -77,7 +78,7 @@ void AForm::execute(Bureaucrat const &executor) const
 	else
 	{
 		std::cout << executor.getName() << " executes form: " << this->_formName << std::endl;
-		this->execute();
+		this->execAction(executor);
 	}
 }
 

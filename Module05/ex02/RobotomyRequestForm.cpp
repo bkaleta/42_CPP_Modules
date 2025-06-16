@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:53:44 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/15 23:41:18 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/16 12:20:38 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &o
 	return (*this);
 }
 
-void RobotomyRequestForm::execute() const
+void RobotomyRequestForm::execAction(Bureaucrat const &executor) const
 {
+	(void)executor;
 	srand(time(0));
 	std::cout << "Some Drilling Noises" << std::endl;
 	

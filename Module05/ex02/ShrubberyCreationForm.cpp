@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 19:03:54 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/15 23:46:58 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/16 12:21:27 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	return (*this);
 }
 
-void ShrubberyCreationForm::execute() const
+void ShrubberyCreationForm::execAction(Bureaucrat const &executor) const
 {
+	(void)executor;
 	std::ofstream outfile;
 	
 	outfile.open((this->_target + "_shrubbery").c_str()); 
