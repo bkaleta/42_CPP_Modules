@@ -6,23 +6,35 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:53:44 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/13 18:24:41 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/16 14:50:00 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
+RobotomyRequestForm::RobotomyRequestForm(void) : AForm("RobotomyRequestForm", 72, 45), _target("null") {}
+
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target)
 	: AForm("RobotomyRequestForm", 72, 45), _target(target)
 {}
+
+RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &other) : AForm(other), _target(other._target) {}
 
 RobotomyRequestForm::~RobotomyRequestForm() 
 {
 	std::cout << "Form " << getName() << " Destroyed" << std::endl;
 }
 
-void RobotomyRequestForm::execute() const
+RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other) 
 {
+	AForm::operator=(other);
+	this->_target = other._target;
+	return (*this);
+}
+
+void RobotomyRequestForm::execAction(Bureaucrat const &executor) const
+{
+	(void)executor;
 	srand(time(0));
 	std::cout << "Some Drilling Noises" << std::endl;
 	
@@ -34,4 +46,9 @@ void RobotomyRequestForm::execute() const
 	{
 		std::cout << _target << "'s robotomy failed!" << std::endl;
 	}
+}
+
+std::ostream	&operator<<(std::ostream &out, RobotomyRequestForm const &form)
+{
+	return (out << form.getName() << " form, signed: " << form.isSigned() << ", sign grade: " << form.getGradeRequiredToSign() << ", exec grade: " << form.getGradeRequiredToExec());
 }

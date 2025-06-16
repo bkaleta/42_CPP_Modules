@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 00:16:29 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/13 18:35:29 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/16 13:12:21 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,36 +37,32 @@ public:
 	int getGradeRequiredToExec() const;
 	
 	void beSigned(const Bureaucrat &bureaucrat);
-	virtual void execute() const = 0;
-
 	void execute(Bureaucrat const &executor) const;
 
-	class GradeTooHighException : public std::exception {
-    public:
-        virtual const char *what() const throw() {
-            return ("Grade too high!");
-        }
+	virtual void execAction(Bureaucrat const &executor) const = 0;
+
+	class GradeTooHighException : public std::exception 
+    {
+        public:
+            virtual const char *what() const throw();
     };
 
-    class GradeTooLowException : public std::exception {
-    public:
-        virtual const char *what() const throw() {
-            return ("Grade too low!");
-        }
+    class GradeTooLowException : public std::exception 
+    {
+        public:
+            virtual const char *what() const throw();
     };
 
-	class FormNotSignedException : public std::exception {
-    public:
-        const char *what() const throw() {
-            return "Form is not signed!";
-        }
+	class FormNotSignedException : public std::exception 
+    {
+        public:
+            const char *what() const throw();
     };
 
-    class InsufficientGradeException : public std::exception {
-    public:
-        const char *what() const throw() {
-            return "Bureaucrat's grade is insufficient to execute the form!";
-        }
+    class InsufficientGradeException : public std::exception 
+    {
+        public:
+            const char *what() const throw();
     };
 };
 

@@ -6,13 +6,25 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 23:19:31 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/15 20:51:20 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/16 16:47:08 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
 
 Intern::Intern() {}
+
+Intern::Intern(Intern const &other)
+{
+	*this = other;
+}
+
+Intern &Intern::operator=(Intern const &other)
+{
+	if (this != &other)
+	{}
+	return (*this);
+}
 
 Intern::~Intern() {}
 

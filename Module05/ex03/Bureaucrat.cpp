@@ -6,16 +6,14 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:19 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/13 18:45:20 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/16 13:10:58 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
-Bureaucrat::Bureaucrat() : _name("Default Bureaucrat"), _grade(10)
-{
-}
+Bureaucrat::Bureaucrat() : _name("Default Bureaucrat"), _grade(142) {}
 
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade(grade) 
 {
@@ -25,9 +23,7 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade
 		throw GradeTooLowException();
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(other._grade) 
-{
-}
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(other._grade) {}
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat& other) 
 {
@@ -100,4 +96,14 @@ void Bureaucrat::executeForm(AForm const &form) const {
     } catch (const std::exception &e) {
         std::cout << _name << " couldn't execute " << form.getName() << " because " << e.what() << std::endl;
     }
+}
+
+char const *Bureaucrat::GradeTooHighException::what(void) const throw()
+{
+	return ("Grade is too high!");
+}
+
+char const *Bureaucrat::GradeTooLowException::what(void) const throw()
+{
+	return ("Grade is too low!");
 }

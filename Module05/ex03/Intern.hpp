@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 23:19:21 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/15 20:27:09 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/06/16 16:46:34 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ class Intern
 {
 public:
 	Intern();
+	Intern(Intern const &other);
+	Intern &operator=(Intern const &other);
 	~Intern();
 
 	AForm *makeForm(const std::string &formName, const std::string &target);
