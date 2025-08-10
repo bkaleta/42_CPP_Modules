@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 18:11:40 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/08/10 19:39:05 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/08/10 21:41:10 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,27 +114,27 @@ bool isFloat(const std::string &input, size_t &len, size_t dotpos)
 	if (input[len - 1] != 'f')
 		return false;
 
-	std::string core = input.substr(0, len - 1);
+	std::string str = input.substr(0, len - 1);
 
-	if (dotpos == std::string::npos || dotpos >= core.size())
+	if (dotpos == std::string::npos || dotpos >= str.size())
 		return false;
-	if (core[dotpos] != '.') 
+	if (str[dotpos] != '.') 
 		return false;
-	if (core.find('.', dotpos + 1) != std::string::npos)
+	if (str.find('.', dotpos + 1) != std::string::npos)
 		return false;
 
 	size_t i = 0;
-	if (core[i] == '+' || core[i] == '-') 
+	if (str[i] == '+' || str[i] == '-') 
 	{
-		if (core.size() == 1) 
+		if (str.size() == 1) 
 			return false;
 		++i;
 	}
 
 	bool hasDigit = false;
-	while (i < core.size()) 
+	while (i < str.size()) 
 	{
-		char c = core[i];
+		char c = str[i];
 		if (c == '.') 
 		{
 			++i;
@@ -149,30 +149,30 @@ bool isFloat(const std::string &input, size_t &len, size_t dotpos)
 	return hasDigit;
 }
 
-bool isDouble(const std::string &s, size_t &len, size_t dotpos)
+bool isDouble(const std::string &input, size_t &len, size_t dotpos)
 {
-	len = s.size();
+	len = input.size();
 	if (len < 2) 
 		return false;
-	if (s[len - 1] == 'f')
+	if (input[len - 1] == 'f')
 		return false;
 
 	if (dotpos == std::string::npos) 
 		return false;
-	if (s.find('.', dotpos + 1) != std::string::npos)
+	if (input.find('.', dotpos + 1) != std::string::npos)
 		return false;
 
 	size_t i = 0;
-	if (s[i] == '+' || s[i] == '-') {
+	if (input[i] == '+' || input[i] == '-') {
 		if (len == 1) 
 			return false;
 		++i;
 	}
 
 	bool hasDigit = false;
-	while (i < s.size()) 
+	while (i < input.size()) 
 	{
-		char c = s[i];
+		char c = input[i];
 		if (c == '.') 
 		{
 			++i;

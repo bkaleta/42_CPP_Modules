@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 20:52:15 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/08/10 19:06:48 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/08/10 21:48:32 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <climits>
 # include <cctype>
 # include <iomanip>
+# include <cerrno>
 
 enum ConversionType {
     INVALID_T = -1,
