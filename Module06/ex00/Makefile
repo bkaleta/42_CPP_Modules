@@ -1,22 +1,43 @@
-NAME = ScalarConverter
+# =======================
+# Project: cpp06 - ScalarConverter
+# =======================
 
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+NAME        = ScalarConverter
+CPP         = c++
+CPPFLAGS    = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp ScalarConverter.cpp
-OBJS = $(SRCS:.cpp=.o)
+# ---- sources / objects ----
+BASIC       = main ScalarConverter
+SRCS        = $(addsuffix .cpp, $(BASIC))
+OBJS        = $(addsuffix .o, $(BASIC))
 
+# ---- colors ----
+GREEN       = \033[0;32m
+RESET       = \033[0m
+
+# ---- default ----
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	@$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJS)
+	@echo "$(GREEN)✔️  Build complete: '$(NAME)' created$(RESET)"
+
+%.o: %.cpp
+	@$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
+	@echo "$(GREEN)🧹 Object files removed$(RESET)"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "$(GREEN)🗑️  Executable '$(NAME)' removed$(RESET)"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+run: re
+	@echo "$(GREEN)▶️  Run '$(NAME)'$(RESET)"
+	@./$(NAME)
+
+.PHONY: all clean fclean re run
+

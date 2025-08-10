@@ -6,16 +6,21 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 21:04:20 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/08/08 22:39:30 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/08/10 17:43:36 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 #include <limits>
+#include <cmath>
+#include <cstdlib>
+#include <climits>
+#include <cctype>
+#include <iomanip>
 
 ScalarConverter::ScalarConverter() {}
 ScalarConverter::ScalarConverter(const ScalarConverter&) {}
-ScalarConverter &ScalarConverter::operator=(const ScalarConverter&) {}
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter&) { return (*this); }
 ScalarConverter::~ScalarConverter() {}
 
 static void impossible();
@@ -31,31 +36,48 @@ void ScalarConverter::convert(const std::string& input)
 	
 	if (isPseudoLiteral(input))
 	{
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
+		float	fvar;
+		double	dvar;
+		bool	negative_value = false;
 		
 		if (input == "nan" || input == "nanf")
 		{
-			std::cout << "float: nanf" << std::endl;
-			std::cout << "double: nan" << std::endl;
+			fvar = std::numeric_limits<float>::quiet_NaN();
+			dvar = std::numeric_limits<double>::quiet_NaN();
 		}
-		else if (input == "inf" || input == "inff" || input == "+inf" || input == "+inff")
+		else
 		{
-			std::cout << "float: inff" << std::endl;
-			std::cout << "double: inf" << std::endl;
+			if (input == "-inf" || input == "-inff")
+				negative_value = true;
+				
+			if (negative_value)
+			{
+				fvar = -std::numeric_limits<float>::infinity();
+				dvar = -std::numeric_limits<double>::infinity();
+			}
+			else
+			{
+				fvar = std::numeric_limits<float>::infinity();
+				dvar = std::numeric_limits<double>::infinity();
+			}
 		}
-		else if (input == "-inf" || input == "-inff")
+		
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+
+		if (std::isnan(fvar))
+			std::cout << "float: " << fvar << std::endl;
+		else if (std::isinf(fvar))
 		{
-			std::cout << "float: -inff" << std::endl;
-			std::cout << "double: -inf" << std::endl;
+			if (fvar > 0)
+				std::cout << "float: " << fvar << std::endl;
+			else
+				std::cout << "float: " << fvar << std::endl;
 		}
+		else
+			std::cout << std::fixed << std::setprecision(1) << fvar << "f" << std::endl;
 		return ;
 	}
-	// if input is char
-	// if input is digit
-	// if input is float
-	// if input is double
-	
 }
 
 static void impossible()
