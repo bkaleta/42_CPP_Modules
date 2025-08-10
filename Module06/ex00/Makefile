@@ -7,7 +7,7 @@ CPP         = c++
 CPPFLAGS    = -Wall -Wextra -Werror -std=c++98
 
 # ---- sources / objects ----
-BASIC       = main ScalarConverter
+BASIC       = main ScalarConverter whatConversion converters
 SRCS        = $(addsuffix .cpp, $(BASIC))
 OBJS        = $(addsuffix .o, $(BASIC))
 
