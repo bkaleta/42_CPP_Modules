@@ -6,150 +6,183 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 18:32:44 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/08/14 20:00:48 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/08/15 01:22:14 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "converters.hpp"
 
-void printCharFromDouble(double value, bool ok) 
+void printChar(char c, bool ok)
 {
-    std::cout << "char: ";
-    if (!ok) { std::cout << "impossible\n"; return; }
-    if (!std::isfinite(value)) { std::cout << "impossible\n"; return; }
-    if (value < 0.0 || value > 127.0) { std::cout << "impossible\n"; return; }
-    char c = static_cast<char>(value);
-    if (c < 32 || c == 127) { std::cout << "Non displayable\n"; return; }
-    std::cout << "'" << c << "'\n";
+	std::cout << "char: ";
+	
+	if (!ok)
+	{
+		std::cout << "impossible" << std::endl;
+		return ;
+	}
+	if (c < 32 || c == 127)
+	{
+		std::cout << "Non displayable" << std::endl;
+		return ;
+	}
+	std::cout << "'" << c << "'" << std::endl;
 }
 
-void printIntFromDouble(double value, bool ok) 
+void printInt(int i, bool ok)
 {
-    std::cout << "int: ";
-    if (!ok) { std::cout << "impossible\n"; return; }
-    if (!std::isfinite(value)) { std::cout << "impossible\n"; return; }
-    if (value < static_cast<double>(INT_MIN) || value > static_cast<double>(INT_MAX)) 
-    {
-        std::cout << "impossible\n"; return;
-    }
-    std::cout << static_cast<int>(value) << "\n";
+	std::cout << "int: ";
+	if (!ok)
+	{
+		std::cout << "impossible" << std::endl;
+		return ;
+	}
+	std::cout << i << std::endl;
 }
 
-void printFloatFromDouble(double value, bool ok) {
-    std::cout << "float: ";
-    if (!ok) { std::cout << "impossible\n"; return; }
-    if (std::isnan(value)) { std::cout << "nanf\n"; return; }
-    if (std::isinf(value)) {
-        if (value > 0) std::cout << "+inff\n";
-        else std::cout << "-inff\n";
-        return;
-    }
-    float f = static_cast<float>(value);
-    std::cout << std::fixed << std::setprecision(1) << f << "f\n";
-}
-
-void printDoubleFromDouble(double value, bool ok) {
-    std::cout << "double: ";
-    if (!ok) { std::cout << "impossible\n"; return; }
-    if (std::isnan(value)) { std::cout << "nan\n"; return; }
-    if (std::isinf(value)) {
-        if (value > 0) std::cout << "+inf\n";
-        else std::cout << "-inf\n";
-        return;
-    }
-    std::cout << std::fixed << std::setprecision(1) << value << "\n";
-}
-
-void printAll(double value, bool ok) 
+void printFloat(float f, bool ok)
 {
-    printCharFromDouble(value, ok);
-    printIntFromDouble(value, ok);
-    printFloatFromDouble(value, ok);
-    printDoubleFromDouble(value, ok);
+	std::cout << "float: ";
+	if (!ok)
+	{
+		std::cout << "impossible" << std::endl;
+		return ;
+	}
+	if (std::isnan(f))
+	{
+		std::cout << "nanf" << std::endl;
+		return ;
+	}
+	if (std::isinf(f))
+	{
+		if (f > 0)
+			std::cout << "+inff" << std::endl;
+		else
+			std::cout << "-inff" << std::endl;
+		return ;
+	}
+	std::cout << std::fixed << std::setprecision(1) << f << "f" << std::endl;
 }
 
-bool parseIntToDouble(const std::string& input, double &value) 
+void printDouble(double d, bool ok)
 {
-    char *end = 0;
-    double truncated;
-    double  d = std::strtod(input.c_str(), &end);
-    
-    if (end == 0 || *end != '\0' || std::isnan(d) || std::isinf(d)) 
-		return false;
-    if (d >= 0.0)
-        truncated = std::floor(d);
-    else
-        truncated = std::ceil(d);
-    
-    if (d != truncated)
-        return false;
-
-    if (d < static_cast<long>(INT_MIN) || d > static_cast<long>(INT_MAX)) 
-		return false;
-    value = d;
-    
-    return true;
-}
-
-bool parseCoreToDouble(const std::string& input, double &value) 
-{
-    char *end = 0;
-    double d = std::strtod(input.c_str(), &end);
-    
-    if (end == 0 || *end != '\0' || std::isnan(d) || std::isinf(d)) 
-        return false;
-
-    value = d;
-    return true;
+	std::cout << "double: ";
+	
+	if (!ok)
+	{
+		std::cout << "impossible";
+		return ;
+	}
+	if (std::isnan(d))
+	{
+		std::cout << "nan" << std::endl;
+		return ;
+	}
+	if (std::isinf(d))
+	{
+		if (d > 0)
+			std::cout << "+inf" << std::endl;
+		else
+			std::cout << "-inf" << std::endl;
+		return ;
+	}
+	std::cout << std::fixed << std::setprecision(1) << d << std::endl;
 }
 
 void convertPseudo(const std::string& input) 
 {
-    double dv;
-    if (input == "nan" || input == "nanf") {
-        dv = std::numeric_limits<double>::quiet_NaN();
-    } else {
-        bool neg = false;
-        if (input == "-inf" || input == "-inff") neg = true;
-        if (neg) dv = -std::numeric_limits<double>::infinity();
-        else     dv =  std::numeric_limits<double>::infinity();
+    float f = 0.0f;
+    double d = 0.0;
+
+    if (input == "nan" || input == "nanf")
+    {
+        f = std::numeric_limits<float>::quiet_NaN();
+        d = std::numeric_limits<double>::quiet_NaN();
     }
-    printAll(dv, true);
+    else if (input == "+inf" || input == "+inff")
+    {
+        f = std::numeric_limits<float>::infinity();
+        d = std::numeric_limits<double>::infinity();
+    }
+    else if (input == "-inf" || input == "-inff")
+    {
+        f = -std::numeric_limits<float>::infinity();
+        d = -std::numeric_limits<double>::infinity();
+    }
+
+    printChar(0, false);
+    printInt(0, false);
+    printFloat(f, true);
+    printDouble(d, true);
 }
 
 void convertChar(const std::string& input) 
 {
     char c;
-    if (input.size() == 1) 
-		c = input[0];
-    else 
-		c = input[1];
-    double value = static_cast<unsigned char>(c);
-    printAll(value, true);
+	
+    if (input.size() == 1)
+        c = input[0];
+    else
+        c = input[1];
+
+    int i = static_cast<int>(c);
+    float f = static_cast<float>(c);
+    double d = static_cast<double>(c);
+
+    printChar(c, true);
+    printInt(i, true);
+    printFloat(f, true);
+    printDouble(d, true);
 }
 
 void convertInt(const std::string& input) 
 {
-    double value = 0.0;
-    bool ok = parseIntToDouble(input, value);
-    printAll(value, ok);
+	double checker = std::strtod(input.c_str(), NULL);
+    int i = std::atoi(input.c_str());
+    char c = static_cast<char>(i);
+    float f = static_cast<float>(i);
+    double d = static_cast<double>(i);
+
+	if (checker > static_cast<double>(INT_MAX) || checker < static_cast<double>(INT_MIN) 
+		|| std::isnan(checker) || std::isinf(checker))
+    {
+        printChar(c, false);
+        printInt(i, false);
+		printFloat(f, true);
+        printDouble(d, true);
+        return ;
+    }
+
+    printChar(c, true);
+    printInt(i, true);
+    printFloat(f, true);
+    printDouble(d, true);
 }
 
 void convertFloat(const std::string& input) 
 {
-    std::string core = input;
-    if (!core.empty() && core[core.size() - 1] == 'f') 
-        core = core.substr(0, core.size() - 1);
-    double value = 0.0;
-    bool ok = parseCoreToDouble(core, value);
-    printAll(value, ok);
+    float f = std::strtof(input.c_str(), NULL);
+    char c = static_cast<char>(f);
+    int i = static_cast<int>(f);
+    double d = static_cast<double>(f);
+
+    printChar(c, true);
+    printInt(i, true);
+    printFloat(f, true);
+    printDouble(d, true);
 }
 
 void convertDouble(const std::string& input) 
 {
-    double value = 0.0;
-    bool ok = parseCoreToDouble(input, value);
-    printAll(value, ok);
+    double d = std::strtod(input.c_str(), NULL);
+    char c = static_cast<char>(d);
+    int i = static_cast<int>(d);
+    float f = static_cast<float>(d);
+
+    printChar(c, true);
+    printInt(i, true);
+    printFloat(f, true);
+    printDouble(d, true);
 }
 
 void impossible()

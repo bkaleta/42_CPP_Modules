@@ -6,12 +6,13 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 21:04:20 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/08/14 19:41:13 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/08/15 01:24:34 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 #include "converters.hpp"
+#include <cstdio>
 
 ScalarConverter::ScalarConverter() {}
 ScalarConverter::ScalarConverter(const ScalarConverter&) {}

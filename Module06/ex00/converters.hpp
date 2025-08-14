@@ -8,15 +8,13 @@
 # include <iomanip>
 # include <climits>
 # include "ScalarConverter.hpp"
+# include <cstdio>
 
 void	impossible();
-void	printCharFromDouble(double value, bool ok);
-void	printIntFromDouble(double value, bool ok);
-void	printFloatFromDouble(double value, bool ok);
-void	printDoubleFromDouble(double value, bool ok);
-void	printAll(double value, bool ok);
-bool	parseIntToDouble(const std::string& input, double &value);
-bool	parseCoreToDouble(const std::string& input, double &value);
+void	printChar(char c, bool ok);
+void	printInt(int i, bool ok);
+void	printFloat(float f, bool ok);
+void	printDouble(double d, bool ok);
 void	convertPseudo(const std::string& input);
 void	convertChar(const std::string& input);
 void	convertInt(const std::string& input);

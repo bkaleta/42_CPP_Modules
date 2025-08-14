@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 18:11:40 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/08/10 21:41:10 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/08/14 20:22:43 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,7 @@ bool isChar(const std::string &input, size_t &len)
 	}
 
 	if (len == 3 && input[0] == '\'' && input[2] == '\'') 
-	{
-		unsigned char c = static_cast<unsigned char>(input[1]);
-		if (!std::isdigit(c))
-			return true;
-	}
+		return true;
 	return false;
 }
 
