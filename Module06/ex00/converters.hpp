@@ -20,5 +20,6 @@ void	convertChar(const std::string& input);
 void	convertInt(const std::string& input);
 void	convertFloat(const std::string& input);
 void	convertDouble(const std::string& input);
+void	printAll(char c, int i, float f, double d);
 
 #endif
