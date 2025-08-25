@@ -6,12 +6,14 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 22:06:20 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/08/24 23:45:45 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/08/25 22:01:56 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <Array.hpp>
+#include "Array.hpp"
+#include <ctime>
+#include <cstdlib>
 
 #define MAX_VAL 750
 int main(int, char**)
