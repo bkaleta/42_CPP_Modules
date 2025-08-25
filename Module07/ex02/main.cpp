@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 22:06:20 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/08/25 22:01:56 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/08/25 22:25:32 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 #define MAX_VAL 750
 int main(int, char**)
 {
+    Array<std::string> michal(5);
+    michal[1] = "czesc";
+    std::cout << michal[1] << std::endl;
+
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
