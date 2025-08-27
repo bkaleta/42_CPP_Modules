@@ -2,7 +2,7 @@
 # Project: cpp08 - Templated containers, iterators, algorithms
 # ============================================================
 
-NAME        = Array
+NAME        = Easyfind
 CPP         = c++
 CPPFLAGS    = -Wall -Wextra -Werror -std=c++98
 
