@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 20:30:54 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/08/28 20:42:01 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/08/28 21:47:14 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,14 @@ int main() {
 	
 	try {
 		std::list<int>::const_iterator it = easyfind(values, 3);
-		std::cout << *it << std::endl;
+		std::cout << "Const iterator: " << *it << std::endl;
+	} catch (std::out_of_range &warrning) {
+		std::cerr << warrning.what() << std::endl;
+	}
+
+	try {
+		std::list<int>::iterator it = easyfind(values, 4);
+		std::cout << "Iterator: " << *it << std::endl;
 	} catch (std::out_of_range &warrning) {
 		std::cerr << warrning.what() << std::endl;
 	}
