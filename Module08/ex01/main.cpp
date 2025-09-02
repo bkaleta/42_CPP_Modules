@@ -6,32 +6,28 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 19:23:59 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/09/02 22:47:59 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/02 23:02:56 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 #include <limits>
+#include <cstdlib>
+#include <ctime>
 
 int main() {
+	srand(time(NULL));
+	
 	Span sp = Span(80085);
-	Span test(5);
-
-	test.addNumber(1);
-	test.addNumber(2);
+	Span test(123456);
 	
 	std::vector<int> Michal;
-	Michal.push_back(-2137); 
-	Michal.push_back(42); 
-	Michal.push_back(1337); 
-	Michal.push_back(666); 
-	Michal.push_back(80085); 
-	Michal.push_back(69); 
-	Michal.push_back(420); 
+	
+	for (unsigned int i = 0; i < 12345; i++)
+		Michal.push_back(rand());
 	
 	std::vector<int>::iterator f = Michal.begin();
 	std::vector<int>::iterator l = Michal.end();
-
 	try {
 		std::cout << sp.longestSpan() << std::endl;
 		std::cout << sp.shortestSpan() << std::endl;
@@ -67,6 +63,9 @@ int main() {
 	std::vector<int> print = test.getNumbers();
 	for (unsigned int i = 0; i < print.size(); i++)
 		std::cout << i << ". " << print[i] << std::endl;
+		
+	std::cout << test.shortestSpan() << std::endl;
+	std::cout << test.longestSpan() << std::endl;
 
 	return (0);
 }
