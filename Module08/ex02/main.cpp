@@ -6,11 +6,12 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 20:45:47 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/09/03 21:05:17 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/04 18:28:57 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
+#include <list>
 
 int main() {
 	MutantStack<int> mstack;
@@ -35,5 +36,32 @@ int main() {
 	++it;
 	}
 	std::stack<int> s(mstack);
+	
+	// test 2
+
+	std::list<int> mstack2;
+	
+	mstack2.push_back(5);
+	mstack2.push_back(17);
+	std::cout << mstack2.front() << std::endl;
+	mstack2.pop_back();
+	std::cout << mstack2.size() << std::endl;
+	mstack2.push_back(3);
+	mstack2.push_back(5);
+	mstack2.push_back(737);
+	//[...]
+	mstack2.push_back(0);
+	std::list<int>::iterator it2 = mstack2.begin();
+	std::list<int>::iterator ite2 = mstack2.end();
+	++it2;
+	--it2;
+	while (it2 != ite2)
+	{
+	std::cout << *it2 << std::endl;
+	++it2;
+	}
+	std::stack<int> s2(mstack);
+	
+	
 	return 0;
 }
