@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 15:34:12 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/09/07 21:24:46 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/07 22:23:12 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void programStart(int ac, char *av) {
 	if (ac == 2) {
 		try {
 			BitcoinExchange broker;
-			//broker.performExchange(av);
+			broker.performExchange(av);
 		} catch (const char *error) {
 			std::cerr << error << std::endl;
 		}
@@ -159,4 +159,90 @@ bool BitcoinExchange::validNumber(const std::string &strValue) {
         return false;
     }
     return hasDigit;	
+}
+
+void BitcoinExchange::performExchange(const char *fileName) {
+	std::ifstream input(fileName);
+    if (!input.is_open()) {
+        std::cerr << "Error: cannot open input file: " << *fileName << std::endl;
+        return;
+    }
+
+    std::string line;
+
+    if (!std::getline(input, line)) {
+        std::cerr << "Error: empty input file" << std::endl;
+        return;
+    }
+    {
+        std::stringstream ss(line);
+        std::string h1, h2, h3;
+        ss >> h1;            // "date"
+        ss >> h2;            // "|" lub ","
+        ss >> h3;            // "value"
+        if (!(h1 == "date" && (h2 == "|" || h2 == ",") && h3 == "value")) {
+            std::cerr << "Error: bad header => " << line << std::endl;
+            // nie przerywamy; lecimy dalej
+        }
+    }
+
+    // Przetwarzanie wierszy
+    while (std::getline(input, line)) {
+        if (line.empty())
+            continue;
+
+        std::stringstream ss(line);
+        std::string date;
+        char sep = 0;
+        std::string valueTok;
+
+        // wczytujemy: <date> <sep> <valueTok>
+        if (!(ss >> date)) {
+            std::cerr << "Error: bad input => " << line << std::endl;
+            continue;
+        }
+        if (!(ss >> sep) || (sep != '|' && sep != ',')) {
+            std::cerr << "Error: bad separator => " << line << std::endl;
+            continue;
+        }
+        if (!(ss >> valueTok)) {
+            std::cerr << "Error: bad value => " << line << std::endl;
+            continue;
+        }
+
+        // walidacje
+        if (!valiDate(date)) {
+            std::cerr << "Error: bad date => " << date << std::endl;
+            continue;
+        }
+
+        double value = 0.0;
+        if (!valiValue(valueTok, value, 0)) {   // Twoja funkcja: format + zakres
+            std::cerr << "Error: bad value => " << valueTok << std::endl;
+            continue;
+        }
+
+        // szukamy kursu: dokładna data albo najbliższa wcześniejsza
+        try {
+            std::map<std::string, double>::const_iterator it = _database.lower_bound(date);
+            double rate = 0.0;
+            if (it != _database.end() && it->first == date) {
+                rate = it->second;                       // dokładny traf
+            } else {
+                if (it == _database.begin()) {
+                    std::cerr << "Error: no earlier rate for date " << date << std::endl;
+                    continue;
+                }
+                --it;                                    // najbliższa wcześniejsza
+                rate = it->second;
+            }
+
+            const double result = value * rate;
+            std::cout << date << " => " << value << " = "
+                      << result << std::endl;
+        } catch (...) {
+            std::cerr << "Error: unexpected lookup failure for " << date << std::endl;
+            continue;
+        }
+    }
 }
