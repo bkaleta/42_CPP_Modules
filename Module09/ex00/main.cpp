@@ -6,7 +6,13 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 15:22:59 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/09/07 15:23:00 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/07 15:33:25 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "BitcoinExchange.hpp"
+
+int main(int ac, char **av) {
+	programStart(ac, av[1]);
+	return (0);
+}
