@@ -7,6 +7,7 @@
 # include <map>
 # include <ctime>
 # include <cstdlib>
+# include <cctype>
 
 class BitcoinExchange
 {
@@ -21,7 +22,9 @@ public:
 	void readDB();
 	void performExchange(const char *fileName);
 	bool valiDate(const std::string &date);
-	// valuedate
+	bool valiDateForm(const std::string &date);
+	bool valiValue(const std::string &strValue, double &value, bool db);
+	bool validNumber(const std::string &strValue);
 	// printExchange
 };
 
