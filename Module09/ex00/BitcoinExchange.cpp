@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 15:34:12 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/09/07 22:23:12 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/08 20:00:04 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,72 +176,67 @@ void BitcoinExchange::performExchange(const char *fileName) {
     }
     {
         std::stringstream ss(line);
-        std::string h1, h2, h3;
-        ss >> h1;            // "date"
-        ss >> h2;            // "|" lub ","
-        ss >> h3;            // "value"
-        if (!(h1 == "date" && (h2 == "|" || h2 == ",") && h3 == "value")) {
+        std::string headerDate, headerDelimiter, headerValue;
+        ss >> headerDate;
+        ss >> headerDelimiter;
+        ss >> headerValue;
+        if (!(headerDate == "date" && headerDelimiter == "|" && headerValue == "value")) {
             std::cerr << "Error: bad header => " << line << std::endl;
-            // nie przerywamy; lecimy dalej
         }
     }
 
-    // Przetwarzanie wierszy
     while (std::getline(input, line)) {
         if (line.empty())
             continue;
 
         std::stringstream ss(line);
-        std::string date;
-        char sep = 0;
-        std::string valueTok;
+        std::string inputDate;
+        char delimiter = 0;
+        std::string inputValue;
 
-        // wczytujemy: <date> <sep> <valueTok>
-        if (!(ss >> date)) {
+        if (!(ss >> inputDate)) {
             std::cerr << "Error: bad input => " << line << std::endl;
             continue;
         }
-        if (!(ss >> sep) || (sep != '|' && sep != ',')) {
+        if (!(ss >> delimiter) && delimiter != '|') {
             std::cerr << "Error: bad separator => " << line << std::endl;
             continue;
         }
-        if (!(ss >> valueTok)) {
+        if (!(ss >> inputValue)) {
             std::cerr << "Error: bad value => " << line << std::endl;
             continue;
         }
 
-        // walidacje
-        if (!valiDate(date)) {
-            std::cerr << "Error: bad date => " << date << std::endl;
+        if (!valiDate(inputDate)) {
+            std::cerr << "Error: bad date => " << inputDate << std::endl;
             continue;
         }
 
         double value = 0.0;
-        if (!valiValue(valueTok, value, 0)) {   // Twoja funkcja: format + zakres
-            std::cerr << "Error: bad value => " << valueTok << std::endl;
+        if (!valiValue(inputValue, value, 0)) {
+            std::cerr << "Error: bad value => " << inputValue << std::endl;
             continue;
         }
 
-        // szukamy kursu: dokładna data albo najbliższa wcześniejsza
         try {
-            std::map<std::string, double>::const_iterator it = _database.lower_bound(date);
+            std::map<std::string, double>::const_iterator it = _database.lower_bound(inputDate);
             double rate = 0.0;
-            if (it != _database.end() && it->first == date) {
-                rate = it->second;                       // dokładny traf
+            if (it != _database.end() && it->first == inputDate) {
+                rate = it->second;
             } else {
                 if (it == _database.begin()) {
-                    std::cerr << "Error: no earlier rate for date " << date << std::endl;
+                    std::cerr << "Error: no earlier rate for date " << inputDate << std::endl;
                     continue;
                 }
-                --it;                                    // najbliższa wcześniejsza
+                --it;
                 rate = it->second;
             }
 
             const double result = value * rate;
-            std::cout << date << " => " << value << " = "
+            std::cout << inputDate << " => " << value << " = "
                       << result << std::endl;
         } catch (...) {
-            std::cerr << "Error: unexpected lookup failure for " << date << std::endl;
+            std::cerr << "Error: unexpected lookup failure for " << inputDate << std::endl;
             continue;
         }
     }
