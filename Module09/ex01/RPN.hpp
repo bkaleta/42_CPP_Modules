@@ -5,8 +5,6 @@
 # include <stack>
 # include <cstdlib>
 
-# define DEBUG 1
-
 class RPN {
 public:
 	RPN();
@@ -15,6 +13,7 @@ public:
 	~RPN();
 	
 	static bool isArgumentCount(int ac);
+	static void startProgram(int ac, const char* expression);
 	void startRPN(std::string expression);
 private:
 	std::stack<int> myStack;
@@ -22,6 +21,7 @@ private:
 	static bool hasTwoDigits(std::string expression);
 	static std::string removeSpaces(std::string expression);
 	static int calculate(int temp1, int temp2, unsigned char sign);
+	void performRPN(const std::string noSpacesExpression);
 };
 
 #endif

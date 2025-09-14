@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 19:55:42 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/09/14 12:57:05 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/14 15:05:29 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,38 @@ RPN &RPN::operator=(RPN const &other) {
 
 RPN::~RPN() {}
 
-bool RPN::isArgumentCount(int ac) {
-	if (ac != 2) {
-		std::cout << "Error: exmaple argument ./RPN  \"8 9 * 9 - 9 - 9 - 4 - 1 +\"" << std::endl;
-		return false;
+void RPN::startProgram(int ac, const char* expression) {
+	if (RPN::isArgumentCount(ac)) {
+		try {
+			RPN myRPN;
+			myRPN.startRPN(std::string(expression));
+		} catch (const char *error) {
+			std::cerr << error << std::endl;
+		}
 	}
+	else
+		std::cout << "Error: example argument ./RPN  \"8 9 * 9 - 9 - 9 - 4 - 1 +\"" << std::endl;
+}
+
+bool RPN::isArgumentCount(int ac) {
+	if (ac != 2) 
+		return false;
 	return true;
 }
 
 void RPN::startRPN(std::string expression) {
-	if (expression.empty()) {
-		std::cout << "Error: empty string" << std::endl;
-		return ;
-	}
-	if (hasTwoDigits(expression)) {
-		std::cout << "Error: has Two Digits" << std::endl;
-		return ;
-	}
+	if (expression.empty()) 
+		throw "Error: empty string";
+	if (hasTwoDigits(expression)) 
+		throw "Error: has Two Digits";
 	std::string noSpacesExpression = removeSpaces(expression);
-	if (!isValidToken(noSpacesExpression)) {
-		std::cout << "Error" << std::endl;
-		return ;
-	}
-	
+	if (!isValidToken(noSpacesExpression))
+		throw "Error: Invalid RPN expression";
+	performRPN(noSpacesExpression);
+	std::cout << this->myStack.top() << std::endl;
+}
+
+void RPN::performRPN(const std::string noSpacesExpression) {
 	int result = 0;
 	
 	for (std::size_t i = 0; i < noSpacesExpression.size(); i++) {
@@ -59,10 +68,8 @@ void RPN::startRPN(std::string expression) {
 			this->myStack.push(num);
 		}
 		else if (c == '+' || c == '-' || c == '/' || c == '*') {
-			if (this->myStack.size() < 2) {
-				std::cout << "Error" << std::endl;
-				exit(EXIT_FAILURE);
-			}
+			if (this->myStack.size() < 2)
+				throw "Error: Not enough nums";
 			int temp1 = this->myStack.top();
 			this->myStack.pop();
 			int temp2 = this->myStack.top();
@@ -70,38 +77,29 @@ void RPN::startRPN(std::string expression) {
 			result = calculate(temp1, temp2, c);
 			this->myStack.push(result);
 		}
-		else {
-			std::cout << "Error" << std::endl;
-            exit(EXIT_FAILURE);
-		}
+		else 
+			throw "Error";
 	}
-	std::cout << this->myStack.top() << std::endl;
+	if (myStack.size() != 1)
+		throw "Error: wrong final stack value";
 }
 
 std::string RPN::removeSpaces(std::string expression) {
-	if (expression.empty()) {
-		std::cout << "Error" << std::endl;
-		return NULL;
-	}
 	std::string noSpacesExpression;
-	size_t i = 0;
-	while (i < expression.size()) {
-		if (!isspace(expression[i]))
+	for (std::size_t i = 0; i < expression.size(); i++) {
+		if (!std::isspace(expression[i]))
 			noSpacesExpression += expression[i];
-		i++;
 	}
 	return noSpacesExpression;
-}
+}	
 
 
 bool RPN::isValidToken(std::string noSpacesExpression) {
-	if (noSpacesExpression.empty())
-		return false;
 	for (unsigned int i = 0; i < noSpacesExpression.size(); i++) {
 		unsigned char sign = static_cast<unsigned char>(noSpacesExpression[i]);
 		if (!std::isdigit(noSpacesExpression[i]) && sign != '+' 
 			&& sign != '-' && sign != '/' && sign != '*')
-					return false;
+					throw "Error: invalid operator";
 	}
 
 	int stackCount = 0;
@@ -113,13 +111,17 @@ bool RPN::isValidToken(std::string noSpacesExpression) {
 		else if (c == '+' || c == '-' || c == '/' || c == '*') {
 			operatorDetected = true;
 			if (stackCount < 2)
-				return false;
+				throw "Error: Not enough nums";
 			stackCount--;
 		}
 		else
 			return false;
 	}
-	return stackCount == 1 && operatorDetected;
+	if (!operatorDetected)
+		throw "Error: No Operator Detected";
+	if (stackCount != 1)
+		throw "Error: wrong final stack value";
+	return true;
 }
 
 bool RPN::hasTwoDigits(std::string expression) {
@@ -140,13 +142,10 @@ int RPN::calculate(int temp1, int temp2, unsigned char sign) {
 		case '-': return (temp2 - temp1);
 		case '*': return (temp2 * temp1);
 		case '/':
-			if (temp1 == 0) { 
-				std::cout << "Error: division by zero" << std::endl; 
-				std::exit(EXIT_FAILURE); 
-			}
+			if (temp1 == 0) 
+				throw "Error: division by zero";
 			return (temp2 / temp1);
 		default:
-			std::cout << "Error: bad operator" << std::endl; 
-			std::exit(EXIT_FAILURE);
+			throw "Error: bad operator";
 	}
 }
