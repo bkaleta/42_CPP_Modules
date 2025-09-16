@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 15:11:44 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/09/16 21:20:30 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/16 21:35:31 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <climits>
 #include <cerrno>
+#include <iomanip>
 
 bool isEmpty(const char *s);
 bool isWhitespaceOnly(const char *s);
@@ -87,27 +88,14 @@ void PmergeMe::startPmergeMe() {
 	clock_t startVectorTimer = std::clock();
 	ford_johnson_sort_for_vector(myVector);
 	clock_t endVectorTimer = std::clock();
-	double msV = (double)(endVectorTimer - startVectorTimer) * 1000.0 / CLOCKS_PER_SEC;
+	double usV = (double)(endVectorTimer - startVectorTimer) * 1e6 / CLOCKS_PER_SEC;
 
 	// DEQUE
 	clock_t startDequeTimer = std::clock();
 	ford_johnson_sort_for_deque(myDeque);
 	clock_t endDequeTimer = std::clock();
-	double msD = (double)(endDequeTimer - startDequeTimer) * 1000.0 / CLOCKS_PER_SEC;
-	printAfter(msV, msD);
-}
-
-void PmergeMe::printAfter(double &msV, double &msD) const {
-	std::cout << "After: ";
-	for (std::vector<int>::const_iterator it = myVector.begin(); it != myVector.end(); ++it) {
-		if (it != myVector.begin()) std::cout << ' ';
-		std::cout << *it;
-	}
-	std::cout << std::endl;
-	std::cout << "Time to process a range of " << myVector.size()
-				<< " elements with std::vector : " << msV << " ms\n";
-	std::cout << "Time to process a range of " << myDeque.size()
-				<< " elements with std::deque  : " << msD << " ms\n";
+	double usD = (double)(endDequeTimer - startDequeTimer) * 1e6 / CLOCKS_PER_SEC;
+	printAfter(usV, usD);
 }
 
 static void build_jacobsthal_order(std::size_t m, std::vector<std::size_t> &order) {
@@ -352,4 +340,17 @@ void PmergeMe::printBefore() const {
 		std::cout << *it;
 	}
 	std::cout << std::endl;
+}
+
+void PmergeMe::printAfter(double &usV, double &usD) const {
+	std::cout << "After: ";
+	for (std::vector<int>::const_iterator it = myVector.begin(); it != myVector.end(); ++it) {
+		if (it != myVector.begin()) std::cout << ' ';
+		std::cout << *it;
+	}
+	std::cout << std::endl;
+	std::cout << "Time to process a range of " << myVector.size()
+				<< " elements with std::vector : " << std::fixed << std::setprecision(5) << usV << " us\n";
+	std::cout << "Time to process a range of " << myDeque.size()
+				<< " elements with std::deque  : " << std::fixed << std::setprecision(5) << usD << " us\n";
 }
