@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 15:11:44 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/09/16 21:35:31 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/16 21:42:04 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void insert_before_partner(std::vector<int> &chainVal,
 									int value, int id);
 static void ford_johnson_sort_for_vector(std::vector<int> &a);
 static void ford_johnson_sort_for_deque(std::deque<int> &a);
+
+// ############################## Canonical Form ##############################
 
 PmergeMe::PmergeMe() {}
 
@@ -78,10 +80,7 @@ void PmergeMe::startProgram(int ac, char** args) {
 	}
 }
 
-bool PmergeMe::isArgumentCount(int ac) {
-	return ac > 1;
-}
-
+// ############################## Start of Merge-Sort ##############################
 void PmergeMe::startPmergeMe() {
 	// VECTOR
 	printBefore();
@@ -98,6 +97,7 @@ void PmergeMe::startPmergeMe() {
 	printAfter(usV, usD);
 }
 
+// ############################## Merge-Sort Algorithm ##############################
 static void build_jacobsthal_order(std::size_t m, std::vector<std::size_t> &order) {
 	order.clear();
 	if (m == 0u) 
@@ -305,6 +305,7 @@ static void ford_johnson_sort_for_deque(std::deque<int> &a) {
 	a.assign(chainVal.begin(), chainVal.end());
 }
 
+// ############################## Utils for Validation ##############################
 bool isEmpty(const char *s) {
 	return !s || *s == '\0';
 }
@@ -333,6 +334,8 @@ bool tryParsePositiveInt(const char *s, int &out) {
 	return true;
 }
 
+// #################################### PRINTERS ####################################
+
 void PmergeMe::printBefore() const {
 	std::cout << "Before: ";
 	for (std::vector<int>::const_iterator it = myVector.begin(); it != myVector.end(); ++it) {
@@ -353,4 +356,9 @@ void PmergeMe::printAfter(double &usV, double &usD) const {
 				<< " elements with std::vector : " << std::fixed << std::setprecision(5) << usV << " us\n";
 	std::cout << "Time to process a range of " << myDeque.size()
 				<< " elements with std::deque  : " << std::fixed << std::setprecision(5) << usD << " us\n";
+}
+
+// ################################ Proud of this XD ################################
+bool PmergeMe::isArgumentCount(int ac) {
+	return ac > 1;
 }
