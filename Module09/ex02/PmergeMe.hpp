@@ -13,6 +13,12 @@ public:
 	PmergeMe(int ac, char **av);
 	PmergeMe &operator=(PmergeMe const &other);
 	~PmergeMe();
+
+	static void startProgram(int ac, char** args);
+	static bool isArgumentCount(int ac);
+	void printBefore() const;
+	void printAfter(double &msV, double &msD) const;
+
 	void startPmergeMe();
 
 	class MyErrorException : public std::exception {
