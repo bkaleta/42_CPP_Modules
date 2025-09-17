@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 15:11:44 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/09/16 21:42:04 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/17 22:58:45 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,12 @@
 #include <climits>
 #include <cerrno>
 #include <iomanip>
+#include <utility>   // std::pair, std::make_pair
+#include <algorithm> // stable_sort, lower_bound
 
 bool isEmpty(const char *s);
 bool isWhitespaceOnly(const char *s);
 bool tryParsePositiveInt(const char *s, int &out);
-static void build_jacobsthal_order(std::size_t m, std::vector<std::size_t> &order);
-static void insert_before_partner(std::vector<int> &chainVal,
-									std::vector<int> &chainId,
-									std::size_t partnerPos,
-									int value, int id);
 static void ford_johnson_sort_for_vector(std::vector<int> &a);
 static void ford_johnson_sort_for_deque(std::deque<int> &a);
 
@@ -87,222 +84,14 @@ void PmergeMe::startPmergeMe() {
 	clock_t startVectorTimer = std::clock();
 	ford_johnson_sort_for_vector(myVector);
 	clock_t endVectorTimer = std::clock();
-	double usV = (double)(endVectorTimer - startVectorTimer) * 1e6 / CLOCKS_PER_SEC;
+	double usV = static_cast<double>(endVectorTimer - startVectorTimer) * 1e6 / CLOCKS_PER_SEC;
 
 	// DEQUE
 	clock_t startDequeTimer = std::clock();
 	ford_johnson_sort_for_deque(myDeque);
 	clock_t endDequeTimer = std::clock();
-	double usD = (double)(endDequeTimer - startDequeTimer) * 1e6 / CLOCKS_PER_SEC;
+	double usD = static_cast<double>(endDequeTimer - startDequeTimer) * 1e6 / CLOCKS_PER_SEC;
 	printAfter(usV, usD);
-}
-
-// ############################## Merge-Sort Algorithm ##############################
-static void build_jacobsthal_order(std::size_t m, std::vector<std::size_t> &order) {
-	order.clear();
-	if (m == 0u) 
-		return;
-	order.push_back(0u);
-	std::vector<std::size_t> J;
-	J.push_back(0u); 
-	J.push_back(1u);
-	for (std::size_t k = 2u; ; ++k) {
-		std::size_t next = J[k-1] + 2u * J[k-2];
-		J.push_back(next);
-		if (next >= m) 
-			break;
-	}
-	for (std::size_t k = 2u; k < J.size(); ++k) {
-		std::size_t start = (J[k] < m) ? J[k] : m;
-		for (std::size_t r = start; r > J[k-1]; --r) 
-			order.push_back(r - 1u);
-		if (J[k] >= m) 
-			break;
-	}
-}
-
-static void insert_before_partner(std::vector<int> &chainVal,
-									std::vector<int> &chainId,
-									std::size_t partnerPos,
-									int value, int id)
-{
-	std::vector<int>::iterator b = chainVal.begin();
-	std::vector<int>::iterator e = b + static_cast<std::vector<int>::difference_type>(partnerPos);
-	std::vector<int>::iterator it = std::lower_bound(b, e, value);
-	std::size_t pos = static_cast<std::size_t>(it - b);
-	chainVal.insert(chainVal.begin() + pos, value);
-	chainId .insert(chainId .begin() + pos, id);
-}
-
-// --- Ford–Johnson: wersja in-place dla std::vector<int> ---
-static void ford_johnson_sort_for_vector(std::vector<int> &myVector) {
-	const std::size_t n = myVector.size();
-	if (n < 2u) 
-		return;
-
-	const bool hasLoneNum = (n % 2u) == 1u;
-	const int  loneNum    = hasLoneNum ? myVector[n - 1u] : 0;
-
-	std::vector<int> ps, pb, pid; // small/big/id par
-	ps.reserve(n/2u); 
-	pb.reserve(n/2u); 
-	pid.reserve(n/2u);
-
-	std::size_t id = 0u;
-	for (std::size_t i = 0u; i + 1u < n; i += 2u, ++id) {
-		int x = myVector[i], y = myVector[i+1u];
-		if (x > y) { 
-			int t = x; x = y; y = t; 
-		}
-		ps.push_back(x); 
-		pb.push_back(y);
-		pid.push_back(static_cast<int>(id));
-	}
-
-	// stabilne sortowanie par po pb (insertion sort po równoległych wektorach)
-	for (std::size_t i = 1u; i < pb.size(); ++i) {
-		int kb = pb[i], ks = ps[i], ki = pid[i];
-		std::size_t j = i;
-		for (; j > 0u && pb[j-1u] > kb; --j) { 
-			pb[j] = pb[j-1u]; 
-			ps[j] = ps[j-1u]; 
-			pid[j] = pid[j-1u]; 
-		}
-		pb[j] = kb; 
-		ps[j] = ks; 
-		pid[j] = ki;
-	}
-
-	// main chain = big; pend = small (oba z id)
-	std::vector<int> chainVal; 
-	chainVal.reserve(n);
-	std::vector<int> chainId;  
-	chainId .reserve(n);
-	std::vector<int> pendVal;  
-	pendVal .reserve(ps.size());
-	std::vector<int> pendId;   
-	pendId  .reserve(ps.size());
-
-	for (std::size_t i = 0u; i < pb.size(); ++i) {
-		chainVal.push_back(pb[i]); 
-		chainId.push_back(pid[i]);
-		pendVal .push_back(ps[i]); 
-		pendId .push_back(pid[i]);
-	}
-
-	// wstaw pend[0] przed partnera (partner jest na pozycji 0)
-	insert_before_partner(chainVal, chainId, 0u, pendVal[0], pendId[0]);
-
-	// reszta wg kolejności Jacobsthala
-	std::vector<std::size_t> order;
-	build_jacobsthal_order(pendVal.size(), order);
-	for (std::size_t k = 1u; k < order.size(); ++k) {
-		std::size_t idx = order[k];
-		const int val = pendVal[idx];
-		const int idp = pendId [idx];
-
-		// znajdź aktualną pozycję partnera
-		std::size_t partnerPos = 0u;
-		for (std::size_t t = 0u; t < chainId.size(); ++t) {
-			if (chainId[t] == idp) { 
-				partnerPos = t; 
-				break; 
-			}
-		}
-		insert_before_partner(chainVal, chainId, partnerPos, val, idp);
-	}
-
-	if (hasLoneNum) {
-		std::vector<int>::iterator it = std::lower_bound(chainVal.begin(), chainVal.end(), loneNum);
-		std::size_t pos = static_cast<std::size_t>(it - chainVal.begin());
-		chainVal.insert(chainVal.begin() + pos, loneNum);
-		chainId .insert(chainId .begin() + pos, -1);
-	}
-	// zwróć wynik do tego samego kontenera (in-place w sensie API)
-	myVector.swap(chainVal); // a = chainVal; bez dodatkowej zewnętrznej kopii
-}
-
-// --- Ford–Johnson: wersja in-place dla std::deque<int> ---
-static void ford_johnson_sort_for_deque(std::deque<int> &a) {
-	const std::size_t n = a.size();
-	if (n < 2u) 
-		return;
-
-	const bool hasStraggler = (n % 2u) == 1u;
-	const int  straggler    = hasStraggler ? a[n - 1u] : 0;
-
-	std::vector<int> ps, pb, pid;
-	ps.reserve(n/2u); 
-	pb.reserve(n/2u); 
-	pid.reserve(n/2u);
-
-	std::size_t id = 0u;
-	for (std::size_t i = 0u; i + 1u < n; i += 2u, ++id) {
-		int x = a[i], y = a[i+1u];
-		if (x > y) { 
-			int t = x; 
-			x = y; 
-			y = t; 
-		}
-		ps.push_back(x); 
-		pb.push_back(y); 
-		pid.push_back(static_cast<int>(id));
-	}
-
-	for (std::size_t i = 1u; i < pb.size(); ++i) {
-		int kb = pb[i], ks = ps[i], ki = pid[i];
-		std::size_t j = i;
-		for (; j > 0u && pb[j-1u] > kb; --j) { 
-			pb[j] = pb[j-1u]; 
-			ps[j] = ps[j-1u]; 
-			pid[j] = pid[j-1u]; 
-		}
-		pb[j] = kb; ps[j] = ks; pid[j] = ki;
-	}
-
-	std::vector<int> chainVal; 
-	chainVal.reserve(n);
-	std::vector<int> chainId;  
-	chainId .reserve(n);
-	std::vector<int> pendVal;  
-	pendVal .reserve(ps.size());
-	std::vector<int> pendId;   
-	pendId  .reserve(ps.size());
-
-	for (std::size_t i = 0u; i < pb.size(); ++i) {
-		chainVal.push_back(pb[i]); 
-		chainId.push_back(pid[i]);
-		pendVal .push_back(ps[i]); 
-		pendId .push_back(pid[i]);
-	}
-
-	insert_before_partner(chainVal, chainId, 0u, pendVal[0], pendId[0]);
-
-	std::vector<std::size_t> order;
-	build_jacobsthal_order(pendVal.size(), order);
-	for (std::size_t k = 1u; k < order.size(); ++k) {
-		std::size_t idx = order[k];
-		const int val = pendVal[idx];
-		const int idp = pendId [idx];
-
-		std::size_t partnerPos = 0u;
-		for (std::size_t t = 0u; t < chainId.size(); ++t) {
-			if (chainId[t] == idp) { 
-				partnerPos = t; 
-				break; 
-			}
-		}
-		insert_before_partner(chainVal, chainId, partnerPos, val, idp);
-	}
-
-	if (hasStraggler) {
-		std::vector<int>::iterator it = std::lower_bound(chainVal.begin(), chainVal.end(), straggler);
-		std::size_t pos = static_cast<std::size_t>(it - chainVal.begin());
-		chainVal.insert(chainVal.begin() + pos, straggler);
-		chainId .insert(chainId .begin() + pos, -1);
-	}
-	// wynik z powrotem do deque (bez tworzenia „drugiej” deque)
-	a.assign(chainVal.begin(), chainVal.end());
 }
 
 // ############################## Utils for Validation ##############################
@@ -362,3 +151,176 @@ void PmergeMe::printAfter(double &usV, double &usD) const {
 bool PmergeMe::isArgumentCount(int ac) {
 	return ac > 1;
 }
+
+// ############################## Merge-Sort Algorithm ##############################
+
+static std::size_t find_partner_pos(const std::vector< std::pair<int,int> > &chain, int id) {
+	for (std::size_t i = 0; i < chain.size(); ++i) 
+		if (chain[i].second == id) 
+			return i;
+	return 0;
+}
+
+static void insert_before_partner(std::vector< std::pair<int,int> > &chain,
+									std::size_t partnerPos, int val, int id) {
+	std::pair<int,int> key(val, -1);
+	std::vector< std::pair<int,int> >::iterator b = chain.begin();
+	std::vector< std::pair<int,int> >::iterator e = b + static_cast<std::vector< std::pair<int,int> >::difference_type>(partnerPos);
+	std::vector< std::pair<int,int> >::iterator it = std::lower_bound(b, e, key);
+	chain.insert(it, std::make_pair(val, id));
+}
+
+static void ford_johnson_sort_for_vector(std::vector<int> &a) {
+	const std::size_t n = a.size();
+	if (n < 2) 
+		return;
+
+	const bool odd = (n % 2) == 1;
+	const int  straggler = odd ? a[n - 1] : 0;
+
+	std::vector< std::pair<int,int> > big;  
+	big.reserve(n/2);
+	std::vector<int> small_by_id;           
+	small_by_id.reserve(n/2);
+	for (std::size_t i = 0, id = 0; i + 1 < n; i += 2, ++id) {
+		int x = a[i], y = a[i+1];
+		if (x > y) { 
+			int t = x; 
+			x = y; 
+			y = t; 
+		}
+		big.push_back(std::make_pair(y, static_cast<int>(id)));
+		small_by_id.push_back(x);
+	}
+
+	std::stable_sort(big.begin(), big.end());
+
+	std::vector< std::pair<int,int> > chain = big;
+	std::vector< std::pair<int,int> > pend; 
+	pend.reserve(big.size());
+	for (std::size_t i = 0; i < big.size(); ++i) {
+		int id = big[i].second;
+		pend.push_back(std::make_pair(small_by_id[id], id));
+	}
+
+	insert_before_partner(chain, 0, pend[0].first, pend[0].second);
+
+	const std::size_t m = pend.size();
+	if (m > 1) {
+		std::size_t j_prev = 1;
+		std::size_t j_curr = 1;
+		for (;;) {
+			std::size_t next  = j_curr + 2 * j_prev;
+			std::size_t start = (next < m) ? next : m;
+			for (std::size_t r = start; r > j_curr; --r) {
+				std::size_t idx = r - 1;
+				int val = pend[idx].first;
+				int id  = pend[idx].second;
+				std::size_t partnerPos = find_partner_pos(chain, id);
+				insert_before_partner(chain, partnerPos, val, id);
+			}
+			if (next >= m) 
+				break;
+			j_prev = j_curr; 
+			j_curr = next;
+		}
+	}
+
+	if (odd) {
+		std::pair<int,int> key(straggler, -1);
+		std::vector< std::pair<int,int> >::iterator it = std::lower_bound(chain.begin(), chain.end(), key);
+		chain.insert(it, std::make_pair(straggler, -1));
+	}
+
+	for (std::size_t i = 0; i < chain.size(); ++i) 
+		a[i] = chain[i].first;
+	if (a.size() != chain.size()) a.resize(chain.size());
+}
+
+// ################################ Deque ################################
+
+static std::size_t find_partner_pos_deque(const std::deque< std::pair<int,int> > &chain, int id) {
+	for (std::size_t i = 0; i < chain.size(); ++i)
+		if (chain[i].second == id) 
+			return i;
+    return 0;
+}
+
+static void insert_before_partner_deque(std::deque< std::pair<int,int> > &chain,
+										std::size_t partnerPos, int val, int id) {
+	std::pair<int,int> key(val, -1);
+	std::deque< std::pair<int,int> >::iterator b = chain.begin();
+	std::deque< std::pair<int,int> >::iterator e =
+		b + static_cast<std::deque< std::pair<int,int> >::difference_type>(partnerPos);
+	std::deque< std::pair<int,int> >::iterator it = std::lower_bound(b, e, key);
+	chain.insert(it, std::make_pair(val, id));
+}
+
+static void ford_johnson_sort_for_deque(std::deque<int> &d) {
+	const std::size_t n = d.size();
+	if (n < 2) 
+		return;
+
+	const bool odd = (n % 2) == 1;
+	const int  straggler = odd ? d[n - 1] : 0;
+
+	std::deque< std::pair<int,int> > big;   
+	big.clear();
+	std::vector<int> small_by_id;          
+	small_by_id.reserve(n/2);
+
+	for (std::size_t i = 0, id = 0; i + 1 < n; i += 2, ++id) {
+		int x = d[i], y = d[i+1];
+		if (x > y) { 
+			int t = x; 
+			x = y; 
+			y = t; 
+		}
+		big.push_back(std::make_pair(y, static_cast<int>(id)));
+		small_by_id.push_back(x);
+	}
+
+	std::stable_sort(big.begin(), big.end());
+
+	std::deque< std::pair<int,int> > chain = big;
+	std::vector< std::pair<int,int> > pend; pend.reserve(big.size());
+	for (std::size_t i = 0; i < big.size(); ++i) {
+		int id = big[i].second;
+		pend.push_back(std::make_pair(small_by_id[id], id));
+	}
+
+    insert_before_partner_deque(chain, 0, pend[0].first, pend[0].second);
+
+	const std::size_t m = pend.size();
+	if (m > 1) {
+		std::size_t j_prev = 1;
+		std::size_t j_curr = 1;
+		for (;;) {
+			std::size_t next  = j_curr + 2 * j_prev;
+			std::size_t start = (next < m) ? next : m;
+			for (std::size_t r = start; r > j_curr; --r) {
+				std::size_t idx = r - 1;
+				int val = pend[idx].first;
+				int id  = pend[idx].second;
+				std::size_t partnerPos = find_partner_pos_deque(chain, id);
+				insert_before_partner_deque(chain, partnerPos, val, id);
+			}
+			if (next >= m) 
+				break;
+			j_prev = j_curr; j_curr = next;
+		}
+	}
+
+	if (odd) {
+		std::pair<int,int> key(straggler, -1);
+		std::deque< std::pair<int,int> >::iterator it = std::lower_bound(chain.begin(), chain.end(), key);
+		chain.insert(it, std::make_pair(straggler, -1));
+	}
+
+	for (std::size_t i = 0; i < chain.size(); ++i) 
+		d[i] = chain[i].first;
+	if (d.size() != chain.size()) d.resize(chain.size());
+}
+
+// test
+

@@ -4,7 +4,8 @@
 
 NAME        = PmergeMe
 CPP         = c++
-CPPFLAGS    = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS    = -Wall -Wextra -Werror -std=c++98 -O3 -march=native -DNDEBUG -pipe -flto
+LDFLAGS  	= -flto
 
 # ---- sources / objects ----
 BASIC       = main PmergeMe
@@ -19,7 +20,7 @@ RESET       = \033[0m
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJS)
+	@$(CPP) $(CPPFLAGS) $(LDFLAGS) -o $(NAME) $(OBJS)
 	@echo "$(GREEN)✔️  Build complete: '$(NAME)' created$(RESET)"
 
 %.o: %.cpp
