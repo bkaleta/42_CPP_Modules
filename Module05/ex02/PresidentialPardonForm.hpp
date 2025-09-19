@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:52:03 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/16 12:18:10 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/19 20:04:44 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 
 class PresidentialPardonForm : public AForm
 {
-private:
-	std::string _target;
 public:
 	PresidentialPardonForm(void);
 	PresidentialPardonForm(const std::string &target);
@@ -28,6 +26,8 @@ public:
 	virtual ~PresidentialPardonForm();
 
 	void execAction(Bureaucrat const &executor) const;
+private:
+	std::string _target;
 };
 
 std::ostream	&operator<<(std::ostream &out, PresidentialPardonForm const &form);

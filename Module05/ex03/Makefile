@@ -1,28 +1,44 @@
-SRC = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp 
+# =======================
+# Project: cpp05 - Repetition and Exceptions
+# =======================
 
-OBJ = $(SRC:.cpp=.o)
+NAME        = Intern
+CPP         = c++
+CPPFLAGS    = -Wall -Wextra -Werror -std=c++98
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+# ---- sources / objects ----
+BASIC       = main Bureaucrat AForm ShrubberyCreationForm RobotomyRequestForm PresidentialPardonForm Intern
+SRCS        = $(addsuffix .cpp, $(BASIC))
+OBJS        = $(addsuffix .o, $(BASIC))
+SHRUBBERY 	= rm -f *_shrubbery
 
-CC = c++
+# ---- colors ----
+GREEN       = \033[0;32m
+RESET       = \033[0m
 
-RM = rm -f
-
-SHRUBBERY = rm -f *_shrubbery
-
-NAME = Intern
-
+# ---- default ----
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+$(NAME): $(OBJS)
+	@$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJS)
+	@echo "$(GREEN)✔️  Build complete: '$(NAME)' created$(RESET)"
+
+%.o: %.cpp
+	@$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ) $(SHRUBBERY)
+	@rm -f $(OBJS) $(SHRUBBERY)
+	@echo "$(GREEN)🧹 Object files removed$(RESET)"
 
 fclean: clean
-	$(RM) $(NAME)
+	@rm -f $(NAME)
+	@echo "$(GREEN)🗑️  Executable '$(NAME)' removed$(RESET)"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+run: re
+	@echo "$(GREEN)▶️  Run '$(NAME)'$(RESET)"
+	@./$(NAME)
+
+.PHONY: all clean fclean re run
+

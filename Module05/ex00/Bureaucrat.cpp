@@ -6,11 +6,12 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:19 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/15 22:07:20 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/19 19:35:06 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include <iostream>
 
 Bureaucrat::Bureaucrat() : _name("Default Bureaucrat"), _grade(142) {}
 
@@ -48,7 +49,7 @@ int Bureaucrat::getGrade() const
 void Bureaucrat::incrementGrade()
 {
 	_grade--;
-	std::cout << "After increse: " << this->getGrade() << std::endl;
+	std::cout << "After increse: " << _grade << std::endl;
 	if (_grade < 1)
 	{
 		_grade++;
@@ -59,7 +60,7 @@ void Bureaucrat::incrementGrade()
 void Bureaucrat::decrementGrade()
 {
 	_grade++;
-	std::cout << "Decrese increse: " << this->getGrade() << std::endl;
+	std::cout << "Decrese increse: " << _grade << std::endl;
 	if (_grade > 150)
 	{
 		_grade--;

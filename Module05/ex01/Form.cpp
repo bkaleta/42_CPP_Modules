@@ -6,11 +6,12 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 00:16:37 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/15 22:47:28 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/19 19:50:41 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
+#include <iostream>
 
 Form::Form() : _formName("Default"), _formSigned(false), _formGradeToSign(10), _formGradeToExec(10) {}
 

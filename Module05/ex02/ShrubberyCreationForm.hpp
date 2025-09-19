@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 19:03:44 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/16 12:16:52 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/19 20:05:00 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 
 class ShrubberyCreationForm : public AForm
 {
-private:
-	std::string _target;
 public:
 	ShrubberyCreationForm();
 	ShrubberyCreationForm(const std::string &target);
@@ -29,6 +27,8 @@ public:
 	virtual ~ShrubberyCreationForm();
 
 	void execAction(Bureaucrat const &executor) const;
+private:
+	std::string _target;
 };
 
 std::ostream	&operator<<(std::ostream &out, ShrubberyCreationForm const &form);

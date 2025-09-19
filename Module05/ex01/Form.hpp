@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 00:16:29 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/15 22:17:35 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/19 19:51:27 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ class Bureaucrat;
 
 class Form
 {
-private:
-	const std::string 	_formName;
-	bool				_formSigned;
-	const int			_formGradeToSign;
-	const int			_formGradeToExec;
 public:
 	Form();
 	Form(const std::string &formName, const int formGradeToSign, const int formGradeToExec);
@@ -49,6 +44,11 @@ public:
 		public:
 			virtual const char *what() const throw();
     };
+private:
+	const std::string 	_formName;
+	bool				_formSigned;
+	const int			_formGradeToSign;
+	const int			_formGradeToExec;
 };
 
 std::ostream &operator<<(std::ostream &out, const Form &f);

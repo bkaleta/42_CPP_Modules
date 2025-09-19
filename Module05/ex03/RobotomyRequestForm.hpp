@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:52:05 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/16 14:44:04 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/19 20:19:58 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 
 class RobotomyRequestForm : public AForm
 {
-private:
-	std::string _target;
 public:
 	RobotomyRequestForm(void);
 	RobotomyRequestForm(const std::string &target);
@@ -30,6 +28,8 @@ public:
     virtual ~RobotomyRequestForm();
 
     void execAction(Bureaucrat const &executor) const;
+private:
+	std::string _target;
 };
 
 std::ostream	&operator<<(std::ostream &out, RobotomyRequestForm const &form);

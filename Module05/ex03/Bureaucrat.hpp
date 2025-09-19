@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:16 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/16 13:09:20 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/19 20:19:38 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ class AForm;
 
 class Bureaucrat
 {
-protected:
-	const std::string 	_name;
-	int					_grade;
 public:
 	Bureaucrat();
 	Bureaucrat(const std::string &name, int grade);
@@ -50,6 +47,9 @@ public:
 		public:
 			virtual const char *what() const throw();
     };
+protected:
+	const std::string 	_name;
+	int					_grade;
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &b);

@@ -6,12 +6,13 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:12 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/06/15 22:47:55 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/19 20:00:49 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include <iostream>
 
 int main()
 {
@@ -39,6 +40,12 @@ int main()
     {
         std::cout << e.what() << std::endl;
     }
+    
     std::cout << "check" << std::endl;
+
+    Form form("form_test", 1, 5);
+    Bureaucrat michal("Michal_test", 100);
+    michal.signForm(form);
+    
     return 0;
 }
