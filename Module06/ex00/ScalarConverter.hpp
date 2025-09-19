@@ -6,20 +6,14 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 20:52:15 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/08/14 19:29:06 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/19 20:49:27 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCALARCONVERTER
 # define SCALARCONVERTER
 
-# include <iostream>
-# include <limits>
-# include <cmath>
-# include <cstdlib>
-# include <climits>
-# include <cctype>
-# include <iomanip>
+# include <string>
 
 enum ConversionType {
     INVALID_T = -1,

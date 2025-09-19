@@ -6,11 +6,18 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 18:32:44 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/08/15 11:13:35 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/19 20:53:56 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "converters.hpp"
+# include <iostream>
+# include <limits>
+# include <cmath>
+# include <cstdlib>
+# include <climits>
+# include <cctype>
+# include <iomanip>
 
 void convertPseudo(const std::string& input) 
 {
@@ -66,7 +73,7 @@ void convertInt(const std::string& input)
 	if (checker > static_cast<double>(INT_MAX) || checker < static_cast<double>(INT_MIN) 
 		|| std::isnan(checker) || std::isinf(checker))
     {
-		convertDouble(input);
+		impossible();
         return ;
     }
 	printAll(c, i, f, d);

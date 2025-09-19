@@ -6,11 +6,17 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 18:11:40 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/08/14 20:22:43 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/19 20:51:21 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+# include <iostream>
+# include <limits>
+# include <cmath>
+# include <cstdlib>
+# include <climits>
+# include <cctype>
 
 bool isPseudo (const std::string&);
 bool isChar   (const std::string&, size_t&);

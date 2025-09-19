@@ -1,14 +1,8 @@
 #ifndef CONVERTERS_HPP
 # define CONVERTERS_HPP
 
-# include <iostream>
 # include <string>
-# include <limits>
-# include <cmath>
-# include <iomanip>
-# include <climits>
 # include "ScalarConverter.hpp"
-# include <cstdio>
 
 void	impossible();
 void	printChar(char c, bool ok);

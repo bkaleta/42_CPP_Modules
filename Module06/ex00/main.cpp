@@ -6,11 +6,12 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 20:51:55 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/08/10 18:01:37 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/19 20:50:39 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <iostream>
 
 int main(int ac, char **argv)
 {
