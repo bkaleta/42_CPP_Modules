@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 22:06:15 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/08/24 23:45:02 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/19 21:07:52 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int main() {
 	std::cout << std::endl;
 	i = 0;
 
-	std::string str_arr[] = {"PIZDA", "I", "CHUJ"};
+	std::string str_arr[] = {"COCO", "JAMBO", "HIHIHI"};
 	::iter(str_arr, 3, to_lower);
 	while (i < 3) {
 		std::cout << str_arr[i] << std::endl;
@@ -52,4 +52,5 @@ int main() {
 
 	int  num[] = {1,2,3};
 	iter(num, 3, ft_print<int const>);
+	std::cout << std::endl;
 }
