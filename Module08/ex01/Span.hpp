@@ -1,16 +1,10 @@
 #ifndef SPAN_HPP
 # define SPAN_HPP
 
-# include <iostream>
-# include <exception>
-# include <algorithm>
 # include <vector>
 
 class Span
 {
-private:
-	unsigned int 		_N;
-	std::vector<int> 	_numbers;
 public:
 	Span();
 	Span(unsigned int N);
@@ -26,6 +20,9 @@ public:
 
 	void	getAll();
 	std::vector<int> getNumbers();
+private:
+	unsigned int 		_N;
+	std::vector<int> 	_numbers;
 };
 
 

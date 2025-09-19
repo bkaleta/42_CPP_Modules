@@ -6,11 +6,14 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 19:24:01 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/09/02 22:50:07 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/19 21:37:57 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
+#include <iostream>
+#include <exception>
+#include <algorithm>
 
 Span::Span() : _N(42) {}
 

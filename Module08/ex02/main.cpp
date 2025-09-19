@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 20:45:47 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/09/04 18:28:57 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/19 22:00:45 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,14 @@ int main() {
 	}
 	std::stack<int> s(mstack);
 	
+	std::cout << std::endl;
 	// test 2
 
 	std::list<int> mstack2;
 	
 	mstack2.push_back(5);
 	mstack2.push_back(17);
-	std::cout << mstack2.front() << std::endl;
+	std::cout << mstack2.back() << std::endl;
 	mstack2.pop_back();
 	std::cout << mstack2.size() << std::endl;
 	mstack2.push_back(3);
@@ -61,7 +62,6 @@ int main() {
 	++it2;
 	}
 	std::stack<int> s2(mstack);
-	
 	
 	return 0;
 }
