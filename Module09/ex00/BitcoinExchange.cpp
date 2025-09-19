@@ -6,7 +6,7 @@
 /*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 15:34:12 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/09/08 20:00:04 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/19 22:28:17 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &other) {
 BitcoinExchange::~BitcoinExchange() {}
 
 void programStart(int ac, char *av) {
-	(void)av;
 	if (ac == 2) {
 		try {
 			BitcoinExchange broker;
@@ -68,11 +67,6 @@ void BitcoinExchange::readDB() {
 			std::cerr << "Error: bad value => " << strValue << std::endl;
 			continue;
 		}
-		// 	if (value < 1 || value > 1000)
-		// 		continue;
-		// 	throw "Exception: Wrong Value";
-		// }
-		// std::cout << date << " | " << value << std::endl;
 		_database[date] = value;
 	}
 }
@@ -112,7 +106,6 @@ bool BitcoinExchange::valiDateForm(const std::string &date) {
 }
 
 bool BitcoinExchange::valiValue(const std::string &strValue, double &value, bool db) {
-	bool dbFlag = db;
 	if (!validNumber(strValue))
 		return false;
 
@@ -122,13 +115,11 @@ bool BitcoinExchange::valiValue(const std::string &strValue, double &value, bool
     if (endptr == strValue.c_str() || *endptr != '\0') {
         return false;
 	}
-
-	if (!dbFlag) {
+	if (!db) {
 		if (val < 0.0 || val > 1000.0)
 			return false;
 	}
 		
-
     value = val;
     return true;
 }

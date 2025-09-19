@@ -12,8 +12,6 @@
 
 class BitcoinExchange
 {
-private:
-	std::map<std::string, double> _database;
 public:
 	BitcoinExchange();
 	BitcoinExchange(BitcoinExchange const &other);
@@ -26,7 +24,8 @@ public:
 	bool valiDateForm(const std::string &date);
 	bool valiValue(const std::string &strValue, double &value, bool db);
 	bool validNumber(const std::string &strValue);
-	// printExchange
+private:
+	std::map<std::string, double> _database;
 };
 
 void programStart(int ac, char *av);
