@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   whatConversion.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
+/*   By: bkaleta <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 18:11:40 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/09/19 20:51:21 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/23 17:42:14 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,27 @@ ConversionType whatConversion(const std::string &input, size_t &len)
 	}
 
 	if (fpos != std::string::npos && fpos == input.size() - 1) {
-        if (isFloat(input, len, dotpos))
-            return FLOAT_T;
-        return INVALID_T;
-    }
+		if (isFloat(input, len, dotpos))
+			return FLOAT_T;
+		return INVALID_T;
+	}
 
-    if (fpos == std::string::npos) {
-        if (isDouble(input, len, dotpos))
-            return DOUBLE_T;
-        return INVALID_T;
-    }
+	if (fpos == std::string::npos) {
+		if (isDouble(input, len, dotpos))
+			return DOUBLE_T;
+		return INVALID_T;
+	}
 
-    return INVALID_T;
+	return INVALID_T;
 }
 
 bool isPseudo(const std::string &input)
 {
-    if (input == "nan"  || input == "nanf" 
+	if (input == "nan"  || input == "nanf" 
 		|| input == "-inf" ||  input == "inf"  || input == "+inf" 
 		|| input == "-inff"|| input == "inff"  || input == "+inff") 
 		return true;
-    return false;
+	return false;
 }
 
 bool isChar(const std::string &input, size_t &len)

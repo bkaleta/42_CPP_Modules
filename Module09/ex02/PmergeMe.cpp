@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
+/*   By: bkaleta <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 15:11:44 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/09/19 22:33:37 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/10/17 14:45:27 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ bool tryParsePositiveInt(const char *s, int &out) {
 
 	if (errno == ERANGE || end == s || *end != '\0')
 		return false;
-	if (v < 0 || v > INT_MAX) 
+	if (v <= 0 || v > INT_MAX) 
 		return false;
 	out = static_cast<int>(v);
 	return true;

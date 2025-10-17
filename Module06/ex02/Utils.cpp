@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
+/*   By: bkaleta <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:59:29 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/08/19 23:46:11 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/23 17:46:01 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void identify(Base& p) {
 		std::cout << "A" << std::endl; 
 		return ; 
 	} catch (...) {}
-    try { 
+	try { 
 		(void)dynamic_cast<B&>(p); 
 		std::cout << "B" << std::endl; 
 		return ; 
 	} catch (...) {}
-    try { 
+	try { 
 		(void)dynamic_cast<C&>(p); 
 		std::cout << "C" << std::endl; 
 		return ; 

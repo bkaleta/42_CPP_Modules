@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   converters.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
+/*   By: bkaleta <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 18:32:44 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/09/19 20:53:56 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/10/16 16:53:15 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,82 +21,82 @@
 
 void convertPseudo(const std::string& input) 
 {
-    float f = 0.0f;
-    double d = 0.0;
+	float f = 0.0f;
+	double d = 0.0;
 
-    if (input == "nan" || input == "nanf")
-    {
-        f = std::numeric_limits<float>::quiet_NaN();
-        d = std::numeric_limits<double>::quiet_NaN();
-    }
-    else if (input == "+inf" || input == "+inff" || input == "inf" || input == "inff")
-    {
-        f = std::numeric_limits<float>::infinity();
-        d = std::numeric_limits<double>::infinity();
-    }
-    else if (input == "-inf" || input == "-inff")
-    {
-        f = -std::numeric_limits<float>::infinity();
-        d = -std::numeric_limits<double>::infinity();
-    }
+	if (input == "nan" || input == "nanf")
+	{
+		f = std::numeric_limits<float>::quiet_NaN();
+		d = std::numeric_limits<double>::quiet_NaN();
+	}
+	else if (input == "+inf" || input == "+inff" || input == "inf" || input == "inff")
+	{
+		f = std::numeric_limits<float>::infinity();
+		d = std::numeric_limits<double>::infinity();
+	}
+	else if (input == "-inf" || input == "-inff")
+	{
+		f = -std::numeric_limits<float>::infinity();
+		d = -std::numeric_limits<double>::infinity();
+	}
 
-    printChar(0, false);
-    printInt(0, false);
-    printFloat(f, true);
-    printDouble(d, true);
+	printChar(0, false);
+	printInt(0, false);
+	printFloat(f, true);
+	printDouble(d, true);
 }
 
 void convertChar(const std::string& input) 
 {
-    char c;
-	
-    if (input.size() == 1)
-        c = input[0];
-    else
-        c = input[1];
+	char c;
 
-    int i = static_cast<int>(c);
-    float f = static_cast<float>(c);
-    double d = static_cast<double>(c);
+	if (input.size() == 1)
+		c = input[0];
+	else
+		c = input[1];
 
-    printAll(c, i, f, d);
+	int i = static_cast<int>(c);
+	float f = static_cast<float>(c);
+	double d = static_cast<double>(c);
+
+	printAll(c, i, f, d);
 }
 
 void convertInt(const std::string& input) 
 {
 	double checker = std::strtod(input.c_str(), NULL);
-    int i = std::atoi(input.c_str());
-    char c = static_cast<char>(i);
-    float f = static_cast<float>(i);
-    double d = static_cast<double>(i);
+	int i = std::atoi(input.c_str());
+	char c = static_cast<char>(i);
+	float f = static_cast<float>(i);
+	double d = static_cast<double>(i);
 
 	if (checker > static_cast<double>(INT_MAX) || checker < static_cast<double>(INT_MIN) 
 		|| std::isnan(checker) || std::isinf(checker))
-    {
+	{
 		impossible();
-        return ;
-    }
+		return ;
+	}
 	printAll(c, i, f, d);
 }
 
 void convertFloat(const std::string& input) 
 {
-    float f = std::strtof(input.c_str(), NULL);
-    char c = static_cast<char>(f);
-    int i = static_cast<int>(f);
-    double d = static_cast<double>(f);
+	float f = std::strtof(input.c_str(), NULL);
+	char c = static_cast<char>(f);
+	int i = static_cast<int>(f);
+	double d = static_cast<double>(f);
 
 	printAll(c, i, f, d);
 }
 
 void convertDouble(const std::string& input) 
 {
-    double d = std::strtod(input.c_str(), NULL);
-    char c = static_cast<char>(d);
-    int i = static_cast<int>(d);
-    float f = static_cast<float>(d);
+	double d = std::strtod(input.c_str(), NULL);
+	char c = static_cast<char>(d);
+	int i = static_cast<int>(d);
+	float f = static_cast<float>(d);
 
-    printAll(c, i, f, d);
+	printAll(c, i, f, d);
 }
 
 void printAll(char c, int i, float f, double d)

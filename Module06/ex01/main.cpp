@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
+/*   By: bkaleta <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 22:41:20 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/09/19 20:57:37 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/09/23 17:40:47 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,21 @@ int main()
     data.joke = "example";
 
 	std::cout << "D Value: " << &data << "\n";
-    Data* original = &data;
+	Data* original = &data;
 	std::cout << "Original Value: " << original << "\n";
 	
-    uintptr_t raw = Serializer::serialize(original);
+	uintptr_t raw = Serializer::serialize(original);
 	std::cout << "Raw: " << raw << "\n";
-    Data* again = Serializer::deserialize(raw);
+	Data* again = Serializer::deserialize(raw);
 	std::cout << "Again value: " << again << "\n";
 
-    if (again == original) {
-        std::cout << "OK: round-trip dziala\n";
-        std::cout << "id=" << again->counter
-                  << ", name=" << again->joke << std::endl;
-    } else {
-        std::cout << "ERR: wskazniki sie roznia\n";
-    }
-    //return 0;
+	if (again == original) {
+		std::cout << "OK: round-trip dziala\n";
+		std::cout << "id=" << again->counter
+					<< ", name=" << again->joke << std::endl;
+	} else {
+		std::cout << "ERR: wskazniki sie roznia\n";
+	}
 
 	Data dataxd;
 	Data* pData;

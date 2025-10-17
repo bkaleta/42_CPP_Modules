@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaleta <bkaleta@student.42warsaw.pl>      +#+  +:+       +#+        */
+/*   By: bkaleta <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 15:34:12 by bkaleta           #+#    #+#             */
-/*   Updated: 2025/09/19 22:28:17 by bkaleta          ###   ########.fr       */
+/*   Updated: 2025/10/17 14:09:43 by bkaleta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ bool BitcoinExchange::validNumber(const std::string &strValue) {
 void BitcoinExchange::performExchange(const char *fileName) {
 	std::ifstream input(fileName);
     if (!input.is_open()) {
-        std::cerr << "Error: cannot open input file: " << *fileName << std::endl;
+        std::cerr << "Error: cannot open input file: " << fileName << std::endl;
         return;
     }
 
